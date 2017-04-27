@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
-import './tau/wearable/theme/default/tau.css';
-import './tau/wearable/theme/default/tau.circle.css';
-import './tau/wearable/js/tau.min';
+import { Page, Header, Content } from './Page';
 
 class App extends Component {
   constructor(props) {
@@ -14,19 +11,27 @@ class App extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener('dblclick', () => {
+      this.back();
+    });
+
     window.addEventListener('tizenhwkey', (ev) => {
       if (ev.keyName === 'back') {
-        if (this.state.currentPage === 'main') {
-          try {
-            window.tizen.application.getCurrentApplication().exit();
-          } catch (err) {
-            // ignore
-          }
-        } else {
-          this.changePage('main');
-        }
+        this.back();
       }
     });
+  }
+
+  back() {
+    if (this.state.currentPage === 'main') {
+      try {
+        window.tizen.application.getCurrentApplication().exit();
+      } catch (err) {
+        // ignore
+      }
+    } else {
+      this.changePage('main');
+    }
   }
 
   changePage(page) {
@@ -38,32 +43,26 @@ class App extends Component {
   render() {
     if (this.state.currentPage === 'main') {
       return (
-        <div className="ui-page ui-page-active">
-          <header className="ui-header">
-            <h2 className="ui-title">React Tizen</h2>
-          </header>
-          <div className="ui-content">
+        <Page>
+          <Header>React Tizen</Header>
+          <Content>
             <ul className="ui-listview">
               <li><a href="#option1" onClick={() => this.changePage('option1')}>Option 1</a></li>
               <li><a href="#option2" onClick={() => this.changePage('option2')}>Option 2</a></li>
               <li><a href="#option3" onClick={() => this.changePage('option3')}>Option 3</a></li>
             </ul>
-          </div>
+          </Content>
           <div className="ui-processing ui-processing-full-size" />
-        </div>
+        </Page>
       );
     }
     return (
-      <div className="ui-page ui-page-active">
-        <header className="ui-header">
-          <h2 className="ui-title">React Tizen</h2>
-        </header>
-        <div className="ui-content">
-          <ul className="ui-listview">
-            Current page: {this.state.currentPage}
-          </ul>
-        </div>
-      </div>
+      <Page>
+        <Header>React Tizen</Header>
+        <Content>
+          Current page: {this.state.currentPage}
+        </Content>
+      </Page>
     );
   }
 }
