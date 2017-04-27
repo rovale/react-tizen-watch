@@ -7,6 +7,11 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
     "react-scripts": "0.9.5",
     "tizen-utils": "^1.2.27"
   },
