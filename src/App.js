@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="ui-page ui-page-active" id="main">
         <header className="ui-header">
-          <h2 className="ui-title">React Tizen Watch</h2>
+          <h2 className="ui-title">React Tizen</h2>
         </header>
         <div className="ui-content">
           To get started, edit <code>src/App.js</code> and save to reload.
