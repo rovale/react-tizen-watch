@@ -1,0 +1,1532 @@
+/***************************************************************************
+                  Body
+***************************************************************************/
+/***************************************************************************
+                   Action Bar
+***************************************************************************/
+/****************************************************************************
+               Circle Progress Bar
+****************************************************************************/
+/****************************************************************************
+		Progress Bar
+****************************************************************************/
+/****************************************************************************
+		Processing
+****************************************************************************/
+/***************************************************************************
+                   Buttons
+***************************************************************************/
+/***************************************************************************
+                   Popup
+***************************************************************************/
+/***************************************************************************
+                   Footer
+***************************************************************************/
+/***************************************************************************
+                   Toast Popup
+***************************************************************************/
+/***************************************************************************
+                   Option Popup
+***************************************************************************/
+/***************************************************************************
+                  circular index scrollbar
+***************************************************************************/
+/***************************************************************************
+                  Listview
+***************************************************************************/
+/****************************************************************************
+               Listview with Marquee
+****************************************************************************/
+/***************************************************************************
+                   Checkbox/Radio
+***************************************************************************/
+/***************************************************************************
+						Page Indicator
+***************************************************************************/
+/****************************************************************************
+		Toggle Switch
+****************************************************************************/
+/***************************************************************************
+                   Scroller
+***************************************************************************/
+/***************************************************************************
+                   More options
+***************************************************************************/
+/************************************************************************/
+/*                           fixedUIStyle.less                          */
+/************************************************************************/
+/* When system font-size is changed, winset size (ex. header, footer, button, etc,
+   include font) also changed. But in UX guide, some UI elements should have fixed
+   size regardless of system font size.
+   So, this less file supports fixed style for some elements.
+   - Layout: header, footer, button
+   - Popup : popup header, popup footer
+   - toggleswitch
+   - progress: text for ratio
+*/
+/***********************************************************************/
+/*                         Layout(FIXED)                               */
+/***********************************************************************/
+/**********************************************************************/
+/*                       Popup(FIXED)                                 */
+/**********************************************************************/
+/**********************************************************************/
+/*                      ToggleSwitch(FIXED)                           */
+/**********************************************************************/
+/**********************************************************************/
+/*                      List(FIXED)                                   */
+/**********************************************************************/
+/************************
+Listview
+*************************/
+/***************************************************************************
+                   Common Style
+
+***************************************************************************/
+/***************************************************************************
+                   Development Tip
+  If you want to implement specific css code of circle device,
+  you should implement specific code here.
+  But when you implement code, you should check duplicate value
+  between common/layout.less and this file.
+  If you have duplicate value, please change static value to variable value.
+***************************************************************************/
+body {
+  background: B013;
+  color: T011;
+}
+.ui-header {
+  height: 115px;
+  line-height: 39px;
+  background-color: transparent;
+}
+.ui-header .ui-title {
+  color: T012;
+  text-align: center;
+  padding-top: 51px;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 30px;
+  -webkit-mask-image: -webkit-linear-gradient(left, #000000 88%, rgba(0, 0, 0, 0) 95%);
+}
+.ui-header .ui-title.ui-icon {
+  background: none !important;
+  padding-left: 1.5rem;
+}
+.ui-header.ui-header-small {
+  height: 76px;
+}
+.ui-header.ui-header-small .ui-title {
+  padding-top: 37px;
+}
+.ui-header.ui-has-more .ui-title {
+  padding-right: 1.5rem;
+  -webkit-mask-image: -webkit-linear-gradient(left, #000000 88%, rgba(0, 0, 0, 0) 95%);
+}
+.ui-header.ui-has-more .ui-more {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  width: 34px;
+  height: 200px;
+  transform: translate(0, -50%);
+  border: 0 none;
+  padding: 0;
+}
+.ui-header.ui-has-more .ui-more.ui-icon-overflow {
+  -webkit-mask-image: none;
+  -moz-mask-image: none;
+  -ms-mask-image: none;
+  -o-mask-image: none;
+  mask-image: none;
+  -webkit-mask-position: initial;
+  -moz-mask-position: initial;
+  -ms-mask-position: initial;
+  -o-mask-position: initial;
+  mask-position: initial;
+  background-color: transparent;
+  overflow: visible;
+}
+.ui-header.ui-has-more .ui-more.ui-icon-overflow[disabled="disabled"] {
+  -webkit-mask-position: initial;
+  -moz-mask-position: initial;
+  -ms-mask-position: initial;
+  -o-mask-position: initial;
+  mask-position: initial;
+}
+.ui-header.ui-has-more .ui-more.ui-icon-overflow:active {
+  background-color: transparent;
+}
+.ui-more {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  width: 34px;
+  height: 200px;
+  transform: translate(0, -50%);
+  background-color: transparent;
+  overflow: visible;
+  border: 0 none;
+  padding: 0;
+  text-indent: -9999px;
+}
+.ui-more::before {
+  content: "";
+  position: absolute;
+  width: 8.75rem;
+  height: 8.75rem;
+  background-color: rgba(60, 60, 60, 0.8);
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  top: 50%;
+  left: 50%;
+  margin-top: -4.375rem;
+  margin-left: -4.375rem;
+  -webkit-transition: transform ease-out 300ms;
+  -moz-transition: transform ease-out 300ms;
+  -o-transition: transform ease-out 300ms;
+  -ms-transition: transform ease-out 300ms;
+  transition: transform ease-out 300ms;
+}
+.ui-more:active::before {
+  -webkit-transition: transform ease-out 300ms;
+  -moz-transition: transform ease-out 300ms;
+  -o-transition: transform ease-out 300ms;
+  -ms-transition: transform ease-out 300ms;
+  transition: transform ease-out 300ms;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.ui-more::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 2.25rem;
+  -webkit-mask-box-image: url("images/Actionbar/b_more_option.png");
+  -moz-mask-box-image: url("images/Actionbar/b_more_option.png");
+  -ms-mask-box-image: url("images/Actionbar/b_more_option.png");
+  -o-mask-box-image: url("images/Actionbar/b_more_option.png");
+  mask-box-image: url("images/Actionbar/b_more_option.png");
+  background-color: B052L1;
+  border-radius: 50%;
+  top: 50%;
+  right: 0.375rem;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.ui-page {
+  background: B011;
+}
+.ui-page .ui-content {
+  text-align: center;
+  font-size: 32px;
+}
+.ui-page .ui-footer.ui-bottom-button {
+  position: fixed !important;
+  bottom: 0;
+  z-index: 1000;
+  height: 28%;
+}
+.ui-page .ui-footer.ui-bottom-button .ui-btn {
+  left: 50%;
+  width: 100%;
+  height: 130%;
+  line-height: 2.625rem;
+  position: relative;
+  margin: 0;
+  padding: 8% 22% 16%;
+  background: -webkit-radial-gradient(center, circle cover, B065L4 50%, transparent 50%);
+  background-size: 300% 840%;
+  background-position: 50% 16.5%;
+  background-repeat: no-repeat;
+  -webkit-transform: translate(-50%, 0);
+}
+.ui-page .ui-footer.ui-bottom-button .ui-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: -webkit-radial-gradient(center, circle cover, B065L4P 50%, transparent 50%);
+  background-position: 50% 16.5%;
+  background-repeat: no-repeat;
+  background-size: 300% 840%;
+  -webkit-transform: translate(0, 10%);
+  -webkit-transition: -webkit-transform 250ms;
+  opacity: 0;
+  z-index: -1;
+}
+.ui-page .ui-footer.ui-bottom-button .ui-btn:active::after {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+}
+.ui-page .ui-footer.ui-bottom-button .ui-btn.ui-btn-icon-only::before {
+  top: 0;
+  -webkit-transform: translate(-50%, 56%);
+  -webkit-transition: transform 150ms ease-out;
+}
+/***************************************************************************
+                   Page Scroll
+***************************************************************************/
+.ui-page.ui-scroll-on {
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+  -moz-overflow-scrolling: auto;
+  -o-overflow-scrolling: auto;
+  -ms-overflow-scrolling: auto;
+  overflow-scrolling: auto;
+}
+.ui-page.ui-scroll-on .ui-content {
+  margin-top: 4.75rem;
+  padding-bottom: 6.25rem;
+  padding-top: 0;
+}
+.ui-page.ui-scroll-on .ui-header ~ .ui-content {
+  margin-top: 0;
+}
+.ui-page.ui-scroll-on .ui-header ~ .ui-scroller > .ui-content {
+  margin-top: 0;
+}
+.ui-page.ui-scroll-on .ui-content ~ .ui-footer:not(.ui-expandable-footer) {
+  margin-top: -5.3125rem;
+}
+/*
+ * Common definition for theme
+ */
+/***************************************************************
+   default font size (base font from WRT)
+   => small: 13px
+   => normal: 17px
+   => large: 20px
+
+This is only applied to gear2.
+so, we set @font_size_default as 17px on gear2 and it was changed to 16px since gear-S.
+This value only used for @rem_base, not for html font-size
+html font-size is set by WRT base font-size
+***************************************************************/
+a {
+  color: T011;
+}
+/***************************************************************************
+                  toggle switch
+***************************************************************************/
+.ui-switch-text {
+  margin-top: 60px;
+  margin-bottom: 48px;
+  font-size: 34px;
+  padding: 0;
+}
+.ui-switch-sub-text {
+  margin-top: 48px;
+  font-size: 26px;
+  color: T161;
+}
+.ui-toggleswitch {
+  width: 76px;
+  height: 76px;
+}
+.ui-toggleswitch.ui-toggleswitch-large {
+  width: 76px;
+  height: 76px;
+}
+.ui-toggleswitch .ui-switch-input {
+  background-color: W014L2;
+  -webkit-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_bg_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_bg_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_bg_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_bg_holo_dark.png');
+  mask-image: url('images/Controller_icon/On_Off/tw_btn_control_bg_holo_dark.png');
+  -webkit-mask-size: 100% 100%;
+  -moz-mask-size: 100% 100%;
+  -ms-mask-size: 100% 100%;
+  -o-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -o-transition: all 300ms;
+  -ms-transition: all 300ms;
+  transition: all 300ms;
+}
+.ui-toggleswitch .ui-switch-input::before {
+  content: none;
+}
+.ui-toggleswitch .ui-switch-input:active ~ .ui-switch-activation,
+.ui-toggleswitch .ui-switch-input:active ~ .ui-switch-button {
+  background-color: transparent;
+}
+.ui-toggleswitch .ui-switch-input:active ~ .ui-switch-activation::before,
+.ui-toggleswitch .ui-switch-input:active ~ .ui-switch-button::before {
+  background-color: transparent;
+}
+.ui-toggleswitch .ui-switch-activation,
+.ui-toggleswitch .ui-switch-button {
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: none;
+  background-color: transparent;
+  transform: none;
+}
+.ui-toggleswitch .ui-switch-activation::before,
+.ui-toggleswitch .ui-switch-button::before {
+  -webkit-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_on_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_on_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_on_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_on_holo_dark.png');
+  mask-image: url('images/Controller_icon/On_Off/tw_btn_control_on_holo_dark.png');
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -o-transition: all 300ms;
+  -ms-transition: all 300ms;
+  transition: all 300ms;
+  background-color: W014L3;
+  -webkit-mask-size: 100% 100%;
+  -moz-mask-size: 100% 100%;
+  -ms-mask-size: 100% 100%;
+  -o-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: 0;
+  -moz-mask-position: 0;
+  -ms-mask-position: 0;
+  -o-mask-position: 0;
+  mask-position: 0;
+}
+.ui-toggleswitch .ui-switch-activation::after,
+.ui-toggleswitch .ui-switch-button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_off_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_off_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_off_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/On_Off/tw_btn_control_off_holo_dark.png');
+  mask-image: url('images/Controller_icon/On_Off/tw_btn_control_off_holo_dark.png');
+  -webkit-mask-size: 100% 100%;
+  -moz-mask-size: 100% 100%;
+  -ms-mask-size: 100% 100%;
+  -o-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: 0;
+  -moz-mask-position: 0;
+  -ms-mask-position: 0;
+  -o-mask-position: 0;
+  mask-position: 0;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: transform 300ms;
+  -moz-transition: transform 300ms;
+  -o-transition: transform 300ms;
+  -ms-transition: transform 300ms;
+  transition: transform 300ms;
+  background-color: W014L4;
+  position: absolute;
+  left: 0;
+}
+.ui-toggleswitch .ui-switch-input:checked {
+  background-color: W014L1;
+}
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-activation,
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-button {
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: none;
+  background-color: transparent;
+  transform: none;
+}
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-activation::before,
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-button::before {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  background-color: W014L3;
+  -webkit-mask-position: 0;
+  -moz-mask-position: 0;
+  -ms-mask-position: 0;
+  -o-mask-position: 0;
+  mask-position: 0;
+}
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-activation::after,
+.ui-toggleswitch .ui-switch-input:checked ~ .ui-switch-button::after {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+.ui-toggleswitch .ui-switch-input:checked:active::before {
+  background-color: W014L1;
+}
+.ui-toggleswitch .ui-switch-input:checked:active ~ .ui-switch-activation,
+.ui-toggleswitch .ui-switch-input:checked:active ~ .ui-switch-button {
+  background-color: transparent;
+}
+.ui-toggleswitch .ui-switch-input:checked:active ~ .ui-switch-activation::before,
+.ui-toggleswitch .ui-switch-input:checked:active ~ .ui-switch-button::before {
+  background-color: W014L3;
+}
+/***************************************************************************
+				  popup
+***************************************************************************/
+.ui-popup {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50% 50%;
+  background-image: -webkit-radial-gradient(transparent -100%, transparent -90%, B013 69%), -webkit-radial-gradient(B011 71%, transparent 0px);
+}
+.ui-popup ::-webkit-scrollbar {
+  display: none;
+}
+.ui-popup .ui-popup-header {
+  text-align: center;
+  min-height: 99px;
+  background-color: transparent;
+  color: T091;
+  padding-top: 60px;
+  padding-right: 61px;
+  padding-bottom: 0;
+  padding-left: 61px;
+}
+.ui-popup .ui-popup-header + .ui-popup-content {
+  padding-top: 26px;
+}
+.ui-popup .ui-popup-content {
+  color: T092;
+  background-color: transparent;
+  font-size: 32px;
+  padding: 16% 8% 4%;
+  text-align: center;
+}
+.ui-popup .ui-popup-content .ui-listview,
+.ui-popup .ui-popup-content .ui-inline-listview {
+  margin: -1.5625rem -3.4375rem -1rem -3.4375rem;
+}
+.ui-popup.ui-has-side-buttons .ui-popup-content {
+  padding-left: 19%;
+  padding-right: 19%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn {
+  height: 100%;
+  width: 26%;
+  border: none;
+  position: absolute;
+  text-indent: -9999px;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn::before {
+  content: "";
+  -webkit-mask-size: 50px 50px;
+  -webkit-mask-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n) {
+  top: 50%;
+  -webkit-transform: translate3d(68%, -50%, 0);
+  -moz-transform: translate3d(68%, -50%, 0);
+  -ms-transform: translate3d(68%, -50%, 0);
+  -o-transform: translate3d(68%, -50%, 0);
+  transform: translate3d(68%, -50%, 0);
+  background: -webkit-radial-gradient(center, circle cover, B065L4 70%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 570% 150%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n)::before {
+  top: 50%;
+  -webkit-transform: translate3d(0, -50%, 0);
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n)::after {
+  background: -webkit-radial-gradient(center, circle cover, B065L4P 70%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 570% 150%;
+  -webkit-transition: -webkit-transform 250ms;
+  opacity: 0;
+  z-index: -1;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n):active::after {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(1) {
+  -webkit-transform: translate3d(68%, -50%, 0);
+  -moz-transform: translate3d(68%, -50%, 0);
+  -ms-transform: translate3d(68%, -50%, 0);
+  -o-transform: translate3d(68%, -50%, 0);
+  transform: translate3d(68%, -50%, 0);
+  background-position: 100% 50%;
+  right: 100%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(1)::before {
+  left: 38%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(1)::after {
+  background-position: 100% 50%;
+  -webkit-transform: translate(-20%, 0);
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(1):active {
+  background-position: 100% 50%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(2) {
+  -webkit-transform: translate3d(-68%, -50%, 0);
+  -moz-transform: translate3d(-68%, -50%, 0);
+  -ms-transform: translate3d(-68%, -50%, 0);
+  -o-transform: translate3d(-68%, -50%, 0);
+  transform: translate3d(-68%, -50%, 0);
+  left: 100%;
+  background-position: 0 50%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(2)::before {
+  right: 38%;
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(2)::after {
+  background-position: 0 50%;
+  -webkit-transform: translate(20%, 0);
+}
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(2):active {
+  background-position: 0 50%;
+}
+.ui-popup .ui-popup-footer.ui-bottom-button .ui-btn {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: 36%;
+  line-height: 2.625rem;
+  width: 100%;
+  border: none;
+  padding: 8% 22% 16%;
+  background: -webkit-radial-gradient(center, circle cover, B065L4 50%, transparent 50%);
+  background-position: 50% 16.5%;
+  background-repeat: no-repeat;
+  background-size: 300% 840%;
+  -webkit-transform: translate3d(-50%, -77%, 0);
+  -moz-transform: translate3d(-50%, -77%, 0);
+  -ms-transform: translate3d(-50%, -77%, 0);
+  -o-transform: translate3d(-50%, -77%, 0);
+  transform: translate3d(-50%, -77%, 0);
+}
+.ui-popup .ui-popup-footer.ui-bottom-button .ui-btn.ui-btn-icon-only::before {
+  top: 1.625rem;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  -moz-transform: translate3d(-50%, 0, 0);
+  -ms-transform: translate3d(-50%, 0, 0);
+  -o-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+}
+.ui-popup .ui-popup-footer.ui-bottom-button .ui-btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: -webkit-radial-gradient(center, circle cover, B065L4P 50%, transparent 50%);
+  background-position: 50% 16.5%;
+  background-repeat: no-repeat;
+  background-size: 300% 840%;
+  -webkit-transform: translate(0, 10%);
+  -webkit-transition: -webkit-transform 250ms;
+  opacity: 0;
+  z-index: -1;
+}
+.ui-popup .ui-popup-footer.ui-bottom-button .ui-btn:active::after {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+}
+/***********************
+Popup Container Scroll
+***********************/
+.ui-popup.ui-scroll-on:not(.ui-ctxpopup):not(.ui-popup-toast) .ui-popup-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: B061L8;
+  -webkit-mask-image: url(./images/Popup/b_popup_edge_inner_glow.png);
+  -webkit-mask-size: 100% 100%;
+}
+.ui-popup.ui-scroll-on:not(.ui-ctxpopup):not(.ui-popup-toast) .ui-popup-content {
+  margin-top: 4.75rem;
+  margin-bottom: 4.75rem;
+  padding-top: 0;
+}
+.ui-popup.ui-scroll-on:not(.ui-ctxpopup):not(.ui-popup-toast) .ui-popup-header + .ui-popup-content {
+  margin-top: 0;
+  padding-top: 8px;
+}
+.ui-popup.ui-scroll-on:not(.ui-ctxpopup):not(.ui-popup-toast) .ui-popup-footer {
+  margin-top: -4.75rem;
+}
+/****************************************
+Popup Toast
+****************************************/
+@-webkit-keyframes toastCheck {
+  0% {
+    -webkit-mask-position: 0px 0px;
+  }
+  6% {
+    -webkit-mask-position: -82px 0px;
+  }
+  11% {
+    -webkit-mask-position: -164px 0px;
+  }
+  17% {
+    -webkit-mask-position: -246px 0px;
+  }
+  22% {
+    -webkit-mask-position: 0px -82px;
+  }
+  28% {
+    -webkit-mask-position: -82px -82px;
+  }
+  33% {
+    -webkit-mask-position: -164px -82px;
+  }
+  39% {
+    -webkit-mask-position: -246px -82px;
+  }
+  44% {
+    -webkit-mask-position: 0px -164px;
+  }
+  50% {
+    -webkit-mask-position: -82px -164px;
+  }
+  56% {
+    -webkit-mask-position: -164px -164px;
+  }
+  61% {
+    -webkit-mask-position: -246px -164px;
+  }
+  67% {
+    -webkit-mask-position: 0px -246px;
+  }
+  72% {
+    -webkit-mask-position: -82px -246px;
+  }
+  78% {
+    -webkit-mask-position: -164px -246px;
+  }
+  83% {
+    -webkit-mask-position: -246px -246px;
+  }
+  89% {
+    -webkit-mask-position: 0px -328px;
+  }
+  94% {
+    -webkit-mask-position: -82px -328px;
+  }
+  100% {
+    -webkit-mask-position: -164px -328px;
+  }
+}
+.ui-popup.ui-popup-toast {
+  min-height: 100%;
+  background-color: W1712;
+  background-image: none;
+  border: none;
+  margin: 0;
+}
+.ui-popup.ui-popup-toast .ui-popup-wrapper {
+  height: 100vh !important;
+}
+.ui-popup.ui-popup-toast .ui-popup-content {
+  height: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: T099;
+  font-size: 32px;
+  text-align: center;
+  line-height: 43px;
+}
+.ui-popup.ui-popup-toast.ui-popup-toast-graphic .ui-popup-toast-check-icon {
+  width: 5.125rem;
+  height: 5.125rem;
+  -webkit-mask-image: url("./images/Popup/toast_check.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-animation-name: toastCheck;
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-delay: 300ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: step-start;
+  -webkit-animation-fill-mode: forwards;
+  background-color: B069;
+}
+.ui-popup.ui-popup-toast.ui-popup-toast-graphic .ui-popup-toast-check-icon::after {
+  content: none;
+}
+/***********************
+Option Popup
+***********************/
+.ui-popup.ui-ctxpopup {
+  height: auto;
+}
+/***************************************************************************
+				  listview
+***************************************************************************/
+.ui-page.ui-scroll-on .ui-listview {
+  margin-top: 3.125rem;
+}
+.ui-page.ui-scroll-on .ui-header ~ .ui-content .ui-listview {
+  margin-top: 0;
+}
+.ui-listview {
+  padding-bottom: 1.25rem;
+}
+.ui-listview li {
+  margin-top: 0.6875rem;
+  font-size: 2.25rem;
+  min-height: 6.75rem;
+  padding: 1.09375rem 2.5rem;
+  border: 0 none;
+  border-bottom: 1.5px solid transparent;
+  border-image: -webkit-linear-gradient(0deg, transparent, #245b85, transparent) 1;
+  color: T0211;
+  text-align: center;
+  line-height: 4.5625rem;
+}
+.ui-listview li.ui-listview-divider {
+  height: 2.0625rem;
+  min-height: 2.0625rem;
+  line-height: 1.9375rem;
+  background-color: transparent;
+  color: T0231;
+  display: -webkit-flex;
+  padding: 0;
+}
+.ui-listview li.ui-listview-divider::before {
+  content: "";
+  height: 100%;
+  width: auto;
+  -webkit-mask-image: url("images/listview/tw_list_sub_line_left.png");
+  -moz-mask-image: url("images/listview/tw_list_sub_line_left.png");
+  -ms-mask-image: url("images/listview/tw_list_sub_line_left.png");
+  -o-mask-image: url("images/listview/tw_list_sub_line_left.png");
+  mask-image: url("images/listview/tw_list_sub_line_left.png");
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 2px;
+  -moz-mask-size: 100% 2px;
+  -ms-mask-size: 100% 2px;
+  -o-mask-size: 100% 2px;
+  mask-size: 100% 2px;
+  -webkit-mask-position: -0.75rem 50%;
+  -moz-mask-position: -0.75rem 50%;
+  -ms-mask-position: -0.75rem 50%;
+  -o-mask-position: -0.75rem 50%;
+  mask-position: -0.75rem 50%;
+  background: B023;
+  -webkit-flex: 1;
+}
+.ui-listview li.ui-listview-divider::after {
+  content: "";
+  height: 100%;
+  width: auto;
+  -webkit-mask-image: url("images/listview/tw_list_sub_line_right.png");
+  -moz-mask-image: url("images/listview/tw_list_sub_line_right.png");
+  -ms-mask-image: url("images/listview/tw_list_sub_line_right.png");
+  -o-mask-image: url("images/listview/tw_list_sub_line_right.png");
+  mask-image: url("images/listview/tw_list_sub_line_right.png");
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 2px;
+  -moz-mask-size: 100% 2px;
+  -ms-mask-size: 100% 2px;
+  -o-mask-size: 100% 2px;
+  mask-size: 100% 2px;
+  -webkit-mask-position: 0.75rem 50%;
+  -moz-mask-position: 0.75rem 50%;
+  -ms-mask-position: 0.75rem 50%;
+  -o-mask-position: 0.75rem 50%;
+  mask-position: 0.75rem 50%;
+  background: B023;
+  -webkit-flex: 1;
+}
+.ui-listview li.ui-li-btn {
+  padding: 0;
+}
+.ui-listview li.ui-li-btn .ui-btn {
+  padding: 2.625rem 2.5rem;
+  margin: 0;
+  line-height: inherit;
+}
+.ui-listview li.ui-li-btn.ui-grid-col-2 .ui-btn {
+  padding: 1.75rem 1.25rem;
+}
+.ui-listview li.ui-li-btn.ui-grid-col-3 .ui-btn {
+  padding: 1.75rem 1.875rem;
+  height: 100%;
+  text-indent: -9999px;
+}
+.ui-listview li > * {
+  color: T0211;
+}
+.ui-listview li > a,
+.ui-listview li button {
+  padding: 1.09375rem 2.5rem;
+  margin: -1.09375rem -2.5rem;
+}
+.ui-listview li.ui-li-active {
+  background-color: transparent;
+  color: T0211P;
+}
+.ui-listview li.ui-li-active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-mask-image: url("images/List/b_list_focus_bg_108.png");
+  -webkit-mask-size: 100% 100%;
+  background-color: B0210P;
+  pointer-events: none;
+}
+.ui-listview li:last-child {
+  border: 0;
+}
+.ui-listview.ui-snap-listview .ui-li-sub-text {
+  color: T022;
+  font-size: 1.5rem;
+}
+.ui-listview.ui-snap-listview .ui-snap-listview-selected::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-mask-image: url("images/List/b_list_focus_bg_108.png");
+  -webkit-mask-size: 100% 100%;
+  background-color: B0210;
+  border-radius: 20vw;
+  pointer-events: none;
+}
+.ui-listview.ui-snap-listview .ui-snap-listview-selected.ui-li-active {
+  color: T0211P;
+}
+.ui-listview.ui-snap-listview .ui-snap-listview-selected.ui-li-active::before {
+  background-color: B0210P;
+}
+.ui-listview.ui-snap-listview li {
+  border: none;
+}
+.ui-listview.ui-snap-listview li.ui-li-active::before {
+  background-color: transparent;
+}
+/***************************************************************************
+                  listview extra
+***************************************************************************/
+.ui-listview .ui-li-has-action-icon .ui-action-text::after {
+  background-color: T011;
+}
+.ui-listview .ui-li-has-action-icon .ui-action-delete {
+  background-color: F022L1i;
+}
+.ui-listview .ui-li-has-action-icon .ui-action-setting {
+  background-color: F022L1i;
+}
+.ui-listview .ui-li-has-action-icon .ui-action-add {
+  background-color: F022L1i;
+}
+.ui-listview .ui-li-has-action-icon.ui-li-active .ui-action-text:active {
+  background-color: B041P;
+  color: T0211P;
+}
+.ui-listview .ui-li-has-action-icon .ui-action-delete:active,
+.ui-listview .ui-li-has-action-icon .ui-action-setting:active,
+.ui-listview .ui-li-has-action-icon .ui-action-add:active {
+  background-color: B041P;
+  color: T0211P;
+}
+.ui-listview .li-divider {
+  height: 2.0625rem;
+  min-height: 2.0625rem;
+  line-height: 1.9375rem;
+  background-color: B023;
+  color: T0231;
+  padding: 0;
+}
+/***************************************************************************
+				  checkbox / radio button
+***************************************************************************/
+input[type="checkbox"]:not(.ui-switch-input),
+input[type="radio"] {
+  height: 76px;
+  width: 76px;
+}
+input[type="checkbox"]:not(.ui-switch-input) {
+  -webkit-mask-image: none;
+  background: -webkit-radial-gradient(W012L2 67%, transparent 71%, transparent), url("images/Controller_icon/Check/ref_btn_check_holo_dark.png") no-repeat;
+  background-size: 100% 100%;
+}
+input[type="checkbox"]:not(.ui-switch-input)::before {
+  content: "";
+  -webkit-mask-image: none;
+  background: -webkit-radial-gradient(W012L1 67%, transparent 71%, transparent);
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  -webkit-transition: all 300ms ease-in;
+  -moz-transition: all 300ms ease-in;
+  -o-transition: all 300ms ease-in;
+  -ms-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
+}
+input[type="checkbox"]:not(.ui-switch-input)::after {
+  -webkit-mask-image: url('images/Controller_icon/Check/tw_btn_check_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Check/tw_btn_check_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Check/tw_btn_check_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Check/tw_btn_check_holo_dark.png');
+  mask-image: url('images/Controller_icon/Check/tw_btn_check_holo_dark.png');
+  -webkit-mask-repeat: repeat;
+  -moz-mask-repeat: repeat;
+  -ms-mask-repeat: repeat;
+  -o-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-position: center bottom;
+  -moz-mask-position: center bottom;
+  -ms-mask-position: center bottom;
+  -o-mask-position: center bottom;
+  mask-position: center bottom;
+  background-color: W012L3;
+  height: 0;
+  -webkit-transition-property: height;
+  -moz-transition-property: height;
+  -o-transition-property: height;
+  -ms-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration: 500ms;
+  -moz-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  -ms-transition-duration: 500ms;
+  transition-duration: 500ms;
+  bottom: 0;
+  -webkit-mask-size: 100%;
+  -moz-mask-size: 100%;
+  -ms-mask-size: 100%;
+  -o-mask-size: 100%;
+  mask-size: 100%;
+}
+input[type="checkbox"]:not(.ui-switch-input):checked::before {
+  -webkit-animation: checkon 300ms ease-out;
+  -moz-animation: checkon 300ms ease-out;
+  -ms-animation: checkon 300ms ease-out;
+  -o-animation: checkon 300ms ease-out;
+  animation: checkon 300ms ease-out;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  -webkit-mask-image: none;
+  background: -webkit-radial-gradient(W012L1 67%, transparent 71%, transparent);
+  opacity: 1;
+}
+input[type="checkbox"]:not(.ui-switch-input):checked::after {
+  height: 100%;
+}
+input[type="checkbox"]:not(.ui-switch-input):active {
+  background-color: transparent;
+}
+input[type="checkbox"]:not(.ui-switch-input):active::after {
+  width: 100%;
+  height: 0;
+}
+input[type="checkbox"]:not(.ui-switch-input):active:checked::before {
+  -webkit-mask-image: none;
+  background: -webkit-radial-gradient(W012L1 67%, transparent 71%, transparent);
+}
+input[type="checkbox"]:not(.ui-switch-input):active:checked::after {
+  background-color: W012L3;
+  height: 100%;
+}
+@-webkit-keyframes checkon {
+  from {
+    opacity: 0.5;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-o-keyframes slideupinreverse {
+  from {
+    opacity: 0.5;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-ms-keyframes slideupinreverse {
+  from {
+    opacity: 0.5;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-moz-keyframes slideupinreverse {
+  from {
+    opacity: 0.5;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes slideupinreverse {
+  from {
+    opacity: 0.5;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1.0;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+input[type="radio"] {
+  background: -webkit-radial-gradient(transparent, transparent 59%, W013L1 63%, W013L1 68%, transparent 72%, transparent);
+  -webkit-mask-image: none;
+}
+input[type="radio"]::after {
+  content: "";
+  -webkit-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  background-color: W013L4;
+}
+input[type="radio"]::before {
+  content: "";
+  background-color: W013L3;
+  -webkit-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -webkit-mask-repeat: no-repeat;
+  -moz-mask-repeat: no-repeat;
+  -ms-mask-repeat: no-repeat;
+  -o-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-size: 100% 100%;
+  -moz-mask-size: 100% 100%;
+  -ms-mask-size: 100% 100%;
+  -o-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  position: absolute;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: transform 300ms;
+  -moz-transition: transform 300ms;
+  -o-transition: transform 300ms;
+  -ms-transition: transform 300ms;
+  transition: transform 300ms;
+}
+input[type="radio"]:checked::before {
+  background-color: W013L3;
+  -webkit-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  z-index: 1;
+}
+input[type="radio"]:active {
+  background-color: transparent;
+  -webkit-mask-image: initial;
+}
+input[type="radio"]:active::after {
+  -webkit-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  background-color: W013L4;
+}
+input[type="radio"]:active:checked::before {
+  background-color: W013L3;
+  -webkit-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -moz-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -ms-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  -o-mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+  mask-image: url('images/Controller_icon/Radio/tw_btn_radio_holo_dark.png');
+}
+input[type="radio"]:active:checked::after {
+  content: none;
+}
+/***************************************************************************
+                  button
+***************************************************************************/
+.ui-default {
+  color: T041;
+  background-color: W011;
+}
+a.ui-default:active:hover,
+.ui-default:enabled:active:hover {
+  background-color: W011P;
+}
+.ui-default:enabled:focus {
+  background-color: W011;
+}
+a.ui-default.ui-state-disabled,
+.ui-default:disabled {
+  color: T041D;
+  background-color: W011D;
+}
+.ui-color-red {
+  color: T041;
+  background-color: W012;
+}
+a.ui-color-red:active:hover,
+.ui-color-red:enabled:active:hover {
+  background-color: W012P;
+}
+.ui-color-red:enabled:focus {
+  background-color: W012;
+}
+a.ui-color-red.ui-state-disabled,
+.ui-color-red:disabled {
+  color: T041D;
+  background-color: W012D;
+}
+.ui-color-orange {
+  color: T041;
+  background-color: W013;
+}
+a.ui-color-orange:active:hover,
+.ui-color-orange:enabled:active:hover {
+  background-color: W013P;
+}
+.ui-color-orange:enabled:focus {
+  background-color: W013;
+}
+a.ui-color-orange.ui-state-disabled,
+.ui-color-orange:disabled {
+  color: T041D;
+  background-color: W013D;
+}
+.ui-color-green {
+  color: T041;
+  background-color: W014;
+}
+a.ui-color-green:active:hover,
+.ui-color-green:enabled:active:hover {
+  background-color: W014P;
+}
+.ui-color-green:enabled:focus {
+  background-color: W014;
+}
+a.ui-color-green.ui-state-disabled,
+.ui-color-green:disabled {
+  color: T041D;
+  background-color: W014D;
+}
+.ui-grid-col-1 > .ui-btn {
+  border-left: solid 1px B013;
+}
+.ui-grid-col-2 > .ui-btn {
+  border-left: solid 1px B013;
+}
+.ui-grid-col-3 > .ui-btn {
+  border-left: solid 1px B013;
+}
+/***************************************************************************
+                  circle progress bar
+***************************************************************************/
+.ui-progressbar .ui-progressbar-value .ui-progressbar-value-left {
+  border: 0.5rem solid B065L2;
+}
+.ui-progressbar .ui-progressbar-value .ui-progressbar-value-right {
+  border: 0.5rem solid B065L2;
+}
+.ui-progressbar .ui-progressbar-bg {
+  border: 0.5rem solid B065L3;
+}
+.ui-progressbar.ui-progressbar-small .ui-progressbar-value .ui-progressbar-value-left,
+.ui-progressbar.ui-progressbar-small .ui-progressbar-value .ui-progressbar-value-right {
+  border: 0.25rem solid B065L2;
+}
+.ui-progressbar.ui-progressbar-small .ui-progressbar-bg {
+  border: 0.25rem solid B065L3;
+}
+/***************************************************************************
+                  circular index scroll bar
+***************************************************************************/
+.ui-circularindexscrollbar .ui-circularindexscrollbar-indicator {
+  background-color: B0731;
+}
+.ui-circularindexscrollbar .ui-circularindexscrollbar-indicator-text {
+  color: T0312P;
+}
+.ui-indexscrollbar {
+  display: none;
+}
+/***************************************************************************
+                  drawer
+***************************************************************************/
+.ui-drawer {
+  background-color: B0511D;
+  border-radius: 50%;
+}
+.ui-drawer-overlay {
+  background-color: B0511D;
+}
+/***************************************************************************
+                  marquee
+***************************************************************************/
+.ui-marquee.ui-marquee-gradient::after {
+  background: -webkit-linear-gradient(left, transparent 0%, B0211 100%);
+}
+/****************************************************
+		Page Indicator
+*****************************************************/
+.ui-page-indicator {
+  position: absolute;
+}
+.ui-page-indicator .ui-page-indicator-item {
+  width: 0.625rem;
+  height: 0.625rem;
+  -webkit-mask-image: -webkit-radial-gradient(#000000 0.125rem, transparent 0.25rem);
+  background-color: T0211D;
+  -webkit-transition-property: transform;
+  -moz-transition-property: transform;
+  -o-transition-property: transform;
+  -ms-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 250ms;
+  -moz-transition-duration: 250ms;
+  -o-transition-duration: 250ms;
+  -ms-transition-duration: 250ms;
+  transition-duration: 250ms;
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -ms-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.ui-page-indicator .ui-page-indicator-item.ui-page-indicator-active {
+  background-color: W1911;
+}
+.ui-page-indicator.ui-page-indicator-linear .ui-page-indicator-item {
+  position: relative;
+  display: inline-block;
+  margin-right: 0.5625rem;
+}
+.ui-page-indicator.ui-page-indicator-linear .ui-page-indicator-item:last-child {
+  margin-right: 0;
+}
+.ui-page-indicator.ui-page-indicator-linear .ui-page-indicator-item.ui-page-indicator-active {
+  -webkit-transform: scale3d(1.5, 1.5, 1.5);
+  -moz-transform: scale3d(1.5, 1.5, 1.5);
+  -ms-transform: scale3d(1.5, 1.5, 1.5);
+  -o-transform: scale3d(1.5, 1.5, 1.5);
+  transform: scale3d(1.5, 1.5, 1.5);
+}
+/***************************************************************************
+                  progress
+***************************************************************************/
+@-webkit-keyframes indeterminate {
+  0% {
+    -webkit-mask-image: url(./images/Progress/tw_progressbar_indeterminate1_holo_dark.png);
+    -webkit-mask-repeat: no-repeat;
+    background-color: B065L6;
+  }
+  25% {
+    -webkit-mask-image: url(./images/Progress/tw_progressbar_indeterminate2_holo_dark.png);
+    -webkit-mask-repeat: no-repeat;
+    background-color: B065L6;
+  }
+  50% {
+    -webkit-mask-image: url(./images/Progress/tw_progressbar_indeterminate3_holo_dark.png);
+    -webkit-mask-repeat: no-repeat;
+    background-color: B065L6;
+  }
+  75% {
+    -webkit-mask-image: url(./images/Progress/tw_progressbar_indeterminate4_holo_dark.png);
+    -webkit-mask-repeat: no-repeat;
+    background-color: B065L6;
+  }
+  100% {
+    -webkit-mask-image: url(./images/Progress/tw_progressbar_indeterminate5_holo_dark.png);
+    -webkit-mask-repeat: no-repeat;
+    background-color: B065L6;
+  }
+}
+progress {
+  color: T011;
+}
+progress::-webkit-progress-bar {
+  background-color: B065L3;
+}
+progress::-webkit-progress-value {
+  background-color: B065L2;
+}
+progress.ui-progress-indeterminate::-webkit-progress-bar {
+  background-color: B065L2;
+}
+/***********************
+Processing
+***********************/
+.ui-processing {
+  background-color: B065L6;
+}
+.ui-processing.ui-processing-full-size {
+  background-color: B065L6;
+}
+.ui-scrollbar-bouncing-effect.ui-top {
+  display: none;
+}
+.ui-scrollbar-bouncing-effect.ui-bottom {
+  width: 100%;
+  height: 6.25rem;
+  left: 0;
+  -webkit-mask-size: 100% 6.25rem;
+}
+.ui-scrollbar-bouncing-effect.ui-bottom::before {
+  width: 100%;
+  height: 6.25rem;
+  -webkit-mask-size: 100% 6.25rem;
+}
+.ui-scrollbar-bouncing-effect.ui-left,
+.ui-scrollbar-bouncing-effect.ui-right {
+  width: 6.25rem;
+  height: 100%;
+  top: 0;
+  -webkit-mask-size: 6.25rem 100%;
+}
+.ui-scrollbar-bouncing-effect.ui-left::before,
+.ui-scrollbar-bouncing-effect.ui-right::before {
+  width: 6.25rem;
+  height: 100%;
+  -webkit-mask-size: 6.25rem 100%;
+}
+.ui-scrollbar-bouncing-effect.ui-bottom {
+  bottom: 0;
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_bottom_glow.png");
+}
+.ui-scrollbar-bouncing-effect.ui-bottom::before {
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_bottom_edge.png");
+}
+.ui-scrollbar-bouncing-effect.ui-left {
+  left: 0;
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_left_glow.png");
+}
+.ui-scrollbar-bouncing-effect.ui-left::before {
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_left_edge.png");
+}
+.ui-scrollbar-bouncing-effect.ui-right {
+  right: 0;
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_right_glow.png");
+}
+.ui-scrollbar-bouncing-effect.ui-right::before {
+  -webkit-mask-image: url("./images/Scroller/bouncing_circle_right_edge.png");
+}
+.is-circle-test {
+  width: 1px;
+}
