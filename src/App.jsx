@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Page, Header, Content } from './Page';
+import { List, Item } from './List';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.changePage = this.changePage.bind(this);
 
     this.state = {
       currentPage: 'main',
@@ -46,11 +49,12 @@ class App extends Component {
         <Page>
           <Header>React Tizen</Header>
           <Content>
-            <ul className="ui-listview">
-              <li><a href="#option1" onClick={() => this.changePage('option1')}>Option 1</a></li>
-              <li><a href="#option2" onClick={() => this.changePage('option2')}>Option 2</a></li>
-              <li><a href="#option3" onClick={() => this.changePage('option3')}>Option 3</a></li>
-            </ul>
+            <List onSelect={this.changePage}>
+              <Item id="option1">Option 1</Item>
+              <Item id="option2">Option 2</Item>
+              <Item id="option3">Option 3</Item>
+              <Item id="option4">Option 4</Item>
+            </List>
           </Content>
           <div className="ui-processing ui-processing-full-size" />
         </Page>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Page = ({ children }) =>
   <div className="ui-page ui-page-active">
@@ -6,7 +7,7 @@ export const Page = ({ children }) =>
   </div>;
 
 Page.prototype.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export const Header = ({ children }) =>
@@ -15,7 +16,7 @@ export const Header = ({ children }) =>
   </header>;
 
 Header.prototype.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export const Content = ({ children }) =>
@@ -24,6 +25,6 @@ export const Content = ({ children }) =>
   </div>;
 
 Content.prototype.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
