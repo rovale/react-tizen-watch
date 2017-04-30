@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // See: http://krasimirtsonev.com/blog/article/react-third-party-library-integration
 export class List extends React.Component {
@@ -10,9 +11,9 @@ export class List extends React.Component {
   }
 
   componentDidMount() {
-    const component = this.list;
+    const element = this.list;
     window.setTimeout(() => (this.snapListStyle =
-      window.tau.helper.SnapListStyle.create(component)), 0);
+      window.tau.helper.SnapListStyle.create(element)), 0);
   }
 
   shouldComponentUpdate() {
@@ -24,15 +25,15 @@ export class List extends React.Component {
   }
 
   render() {
-    const { children, onSelect } = this.props;
+    const { children, match } = this.props;
 
-    const childrenWithOnSelect =
+    const childrenWithMatch =
       React.Children.map(children,
-        child => React.cloneElement(child, { onSelect }));
+        child => React.cloneElement(child, { match }));
 
     return (
       <ul ref={(c) => { this.list = c; }} className="ui-listview">
-        {childrenWithOnSelect}
+        {childrenWithMatch}
       </ul>
     );
   }
@@ -40,15 +41,19 @@ export class List extends React.Component {
 
 List.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
-  onSelect: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export const Item = ({ id, children, onSelect }) =>
-  <li><a href={`#${id}`} onClick={() => onSelect(id)}>{children}</a></li>;
+export const Item = ({ id, children, match }) =>
+  <li><Link id={id} to={`${match.url}/${id}`}>{children}</Link></li>;
 
 Item.prototype.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 

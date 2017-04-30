@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /*
  * Copyright (c) 2015 Samsung Electronics Co., Ltd
  *
@@ -13637,7 +13639,7 @@ ns.version = '0.11.8';
 				document.addEventListener("keyup", handleKeyUp, true);
 				document.addEventListener("keydown", handleKeyDown, true);
 				document.addEventListener("scroll", handleScroll, true);
-				document.addEventListener("click", handleClick, true);
+				// document.addEventListener("click", handleClick, true);
 			};
 
 			// @TODO delete touchSupport flag and attach touch and mouse listeners,

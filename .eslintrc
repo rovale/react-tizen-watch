@@ -3,5 +3,8 @@
     "globals": {
         "window": true,
         "document": true
+    },
+    "rules": {
+        "linebreak-style": "off"
     }
 }
