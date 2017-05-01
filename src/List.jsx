@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import scroll from 'smooth-move';
 
 export class List extends React.Component {
   constructor(props) {
@@ -10,18 +11,18 @@ export class List extends React.Component {
       selectedIndex: 0,
     };
 
-    this.rotaryDetentHandler = this.rotaryDetentHandler.bind(this);
+    this.onRotaryDetent = this.onRotaryDetent.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('rotarydetent', this.rotaryDetentHandler);
+    window.addEventListener('rotarydetent', this.onRotaryDetent);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('rotarydetent', this.rotaryDetentHandler);
+    window.removeEventListener('rotarydetent', this.onRotaryDetent);
   }
 
-  rotaryDetentHandler(e) {
+  onRotaryDetent(e) {
     const direction = e.detail.direction;
 
     if (direction === 'CW') {
@@ -60,28 +61,30 @@ export class Item extends React.Component {
   constructor(props) {
     super(props);
 
-    this.scrollIntoView = this.scrollIntoView.bind(this);
+    this.scrollToMiddle = this.scrollToMiddle.bind(this);
     this.element = null;
   }
 
   componentDidMount() {
     if (this.props.selected) {
-      window.setTimeout(this.scrollIntoView, 0);
+      window.setTimeout(this.scrollToMiddle, 0);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected) {
-      window.setTimeout(this.scrollIntoView, 0);
+      window.setTimeout(this.scrollToMiddle, 0);
     }
   }
 
-  scrollIntoView() {
+  scrollToMiddle() {
     const itemRect = this.element.getBoundingClientRect();
     const itemHeight = itemRect.height;
     const scroller = document.getElementsByClassName('ui-scroller')[0];
     const scrollerHeight = scroller.getBoundingClientRect().height;
-    scroller.scrollTop = (itemRect.top + scroller.scrollTop) - ((scrollerHeight - itemHeight) / 2);
+    const newScrollTop = (itemRect.top + scroller.scrollTop) - ((scrollerHeight - itemHeight) / 2);
+
+    scroll(scroller, { x: 0, y: newScrollTop, duration: 300 });
   }
 
   render() {
