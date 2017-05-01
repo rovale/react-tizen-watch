@@ -16,7 +16,7 @@ Copy-Item "$($folder)\config.xml" $buildFolder
 
 &$tizen build-web -- $buildFolder
 Write-Host "-- Package"
-&$tizen package --type wgt --sign Rovale -- $buildResultFolder
+&$tizen package --type wgt --sign develop -- $buildResultFolder
 Write-Host "-- Install"
 &$tizen install -- $buildResultFolder -n "$($widget).wgt"
 Write-Host "-- Run"

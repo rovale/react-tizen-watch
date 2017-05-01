@@ -2,26 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// See: http://krasimirtsonev.com/blog/article/react-third-party-library-integration
 export class List extends React.Component {
   constructor(props) {
     super(props);
 
-    this.snapListStyle = null;
+    this.state = {
+      selectedIndex: 0,
+    };
+
+    this.rotaryDetentHandler = this.rotaryDetentHandler.bind(this);
   }
 
   componentDidMount() {
-    const element = this.list;
-    window.setTimeout(() => (this.snapListStyle =
-      window.tau.helper.SnapListStyle.create(element)), 0);
-  }
-
-  shouldComponentUpdate() {
-    return false;
+    window.addEventListener('rotarydetent', this.rotaryDetentHandler);
   }
 
   componentWillUnmount() {
-    this.snapListStyle.destroy();
+    window.removeEventListener('rotarydetent', this.rotaryDetentHandler);
+  }
+
+  rotaryDetentHandler(e) {
+    const direction = e.detail.direction;
+
+    if (direction === 'CW') {
+      if (this.state.selectedIndex < (this.props.children.length - 1)) {
+        this.setState({ selectedIndex: this.state.selectedIndex + 1 });
+      }
+    } else if (this.state.selectedIndex > 0) {
+      this.setState({ selectedIndex: this.state.selectedIndex - 1 });
+    }
   }
 
   render() {
@@ -29,10 +38,11 @@ export class List extends React.Component {
 
     const childrenWithMatch =
       React.Children.map(children,
-        child => React.cloneElement(child, { match }));
+        (child, index) =>
+          React.cloneElement(child, { match, selected: index === this.state.selectedIndex }));
 
     return (
-      <ul ref={(c) => { this.list = c; }} className="ui-listview">
+      <ul className="ui-listview ui-snap-listview">
         {childrenWithMatch}
       </ul>
     );
@@ -46,14 +56,59 @@ List.propTypes = {
   }).isRequired,
 };
 
-export const Item = ({ id, children, match }) =>
-  <li><Link id={id} to={`${match.url}/${id}`}>{children}</Link></li>;
+export class Item extends React.Component {
+  constructor(props) {
+    super(props);
 
-Item.prototype.propTypes = {
+    this.scrollIntoView = this.scrollIntoView.bind(this);
+    this.element = null;
+  }
+
+  componentDidMount() {
+    if (this.props.selected) {
+      window.setTimeout(this.scrollIntoView, 0);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selected) {
+      window.setTimeout(this.scrollIntoView, 0);
+    }
+  }
+
+  scrollIntoView() {
+    const itemRect = this.element.getBoundingClientRect();
+    const itemHeight = itemRect.height;
+    const scroller = document.getElementsByClassName('ui-scroller')[0];
+    const scrollerHeight = scroller.getBoundingClientRect().height;
+    scroller.scrollTop = (itemRect.top + scroller.scrollTop) - ((scrollerHeight - itemHeight) / 2);
+  }
+
+  render() {
+    const { id, selected, children, match } = this.props;
+
+    return (
+      <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${selected ? ' ui-snap-listview-selected' : ''}`}>
+        <Link id={id} to={`${match.url}/${id}`}>{children}</Link>
+      </li>
+    );
+  }
+}
+
+Item.propTypes = {
   id: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  selected: PropTypes.bool,
+  children: PropTypes.string.isRequired,
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+Item.defaultProps = {
+  selected: false,
+  match: {
+    url: '/',
+  },
+};
+
 

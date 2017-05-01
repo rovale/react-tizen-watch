@@ -11426,7 +11426,7 @@ ns.version = '0.11.8';
 				this.options = {
 					maxPage: null,
 					numberOfPages: null,
-					layout: "linear",
+					layout: "circular",
 					intervalAngle: 6
 				};
 			};
@@ -16513,6 +16513,7 @@ ns.version = '0.11.8';
 				if (option.enablePageScroll === true && !element.querySelector("." + classes.uiScroller)) {
 					element.classList.add(pageScrollSelector);
 					scroller = document.createElement("div");
+					// xxx
 					scroller.classList.add(classes.uiScroller);
 					fragment = document.createDocumentFragment();
 

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 export const Page = ({ children }) =>
   <div className="ui-page ui-page-active ui-scroll-on">
-    {children}
+    <div className="ui-scroller ui-snap-container" ref={e => e && e.setAttribute('tizen-circular-scrollbar', '')}>
+      {children}
+    </div>
   </div>;
 
 Page.prototype.propTypes = {
@@ -20,7 +22,7 @@ Header.prototype.propTypes = {
 };
 
 export const Content = ({ children }) =>
-  <div className="ui-content">
+  <div className="ui-content" ref={e => e && e.setAttribute('tizen-circular-scrollbar', '')}>
     {children}
   </div>;
 

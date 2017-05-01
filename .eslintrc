@@ -2,9 +2,12 @@
     "extends": "airbnb",
     "globals": {
         "window": true,
-        "document": true
+        "document": true,
+        "CustomEvent": true,
+        "KeyboardEvent": true
     },
     "rules": {
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "react/no-multi-comp": "off"
     }
 }
