@@ -14,6 +14,8 @@ Deploying on the watch
 - run deploy.ps1
 ---
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rovale/react-tizen-watch.svg)](https://greenkeeper.io/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
