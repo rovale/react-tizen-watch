@@ -11,7 +11,7 @@ const Splash = () =>
       <div className="small-processing-container">
         <div className="ui-processing" />
         <div className="ui-processing-text">
-          Waiting for 1 second
+          Waiting for 1 second!
         </div>
       </div>
     </Content>
