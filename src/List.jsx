@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import scroll from 'smooth-move';
 
-export class List extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      selectedIndex: 0,
-    };
 
     this.onRotaryDetent = this.onRotaryDetent.bind(this);
   }
@@ -25,37 +22,57 @@ export class List extends React.Component {
   onRotaryDetent(e) {
     const direction = e.detail.direction;
 
+    const index = this.props.options.findIndex(item => item.id === this.props.activeOptionId);
+
     if (direction === 'CW') {
-      if (this.state.selectedIndex < (this.props.children.length - 1)) {
-        this.setState({ selectedIndex: this.state.selectedIndex + 1 });
+      if (index < (this.props.options.length - 1)) {
+        this.props.onActivateOption(this.props.options[index + 1].id);
       }
-    } else if (this.state.selectedIndex > 0) {
-      this.setState({ selectedIndex: this.state.selectedIndex - 1 });
+    } else if (index > 0) {
+      this.props.onActivateOption(this.props.options[index - 1].id);
     }
   }
 
   render() {
-    const { children, match } = this.props;
+    const { options, match } = this.props;
 
-    const childrenWithMatch =
-      React.Children.map(children,
-        (child, index) =>
-          React.cloneElement(child, { match, selected: index === this.state.selectedIndex }));
+    const items = options.map(item =>
+      <Item
+        key={item.id}
+        id={item.id}
+        match={match}
+        selected={item.id === this.props.activeOptionId}
+      >
+        {item.title}
+      </Item>);
 
     return (
       <ul className="ui-listview ui-snap-listview">
-        {childrenWithMatch}
+        {items}
       </ul>
     );
   }
 }
 
 List.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
+  activeOptionId: PropTypes.string.isRequired,
+  onActivateOption: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = state => ({
+  options: state.list.options,
+  activeOptionId: state.list.activeOptionId,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onActivateOption: id => dispatch({ type: 'ACTIVATE_OPTION', id }),
+});
+
+export const ConnectedList = connect(mapStateToProps, mapDispatchToProps)(List);
 
 export class Item extends React.Component {
   constructor(props) {
@@ -113,5 +130,4 @@ Item.defaultProps = {
     url: '/',
   },
 };
-
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Page, Header, Content } from './Page';
-import { List, Item } from './List';
+import { ConnectedList } from './List';
 
 const Splash = () =>
   <Page>
@@ -21,22 +21,7 @@ const Main = ({ match }) =>
   <Page>
     <Header>React Tizen</Header>
     <Content>
-      <List match={match}>
-        <Item id="option1">Option 1</Item>
-        <Item id="option2">Option 2</Item>
-        <Item id="option3">Option 3</Item>
-        <Item id="option4">Option 4</Item>
-        <Item id="option5">Option 5</Item>
-        <Item id="option6">Option 6</Item>
-        <Item id="option7">Option 7</Item>
-        <Item id="option8">Option 8</Item>
-        <Item id="option9">Option 9</Item>
-        <Item id="option10">Option 10</Item>
-        <Item id="option11">Option 11</Item>
-        <Item id="option12">Option 12</Item>
-        <Item id="option13">Option 13</Item>
-        <Item id="option14">Option 14</Item>
-      </List>
+      <ConnectedList match={match} />
     </Content>
   </Page>;
 
