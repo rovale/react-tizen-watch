@@ -3,25 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "^4.6.1",
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-redux": "^5.0.4",
-    "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
-    "react-router-redux": "^5.0.0-alpha.6",
-    "redux": "^3.6.0",
-    "smooth-move": "^1.0.1"
+    "history": "4.6.1",
+    "prop-types": "15.5.8",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
+    "react-redux": "5.0.4",
+    "react-router": "4.1.1",
+    "react-router-dom": "4.1.1",
+    "react-router-redux": "5.0.0-alpha.6",
+    "redux": "3.6.0",
+    "smooth-move": "1.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.9.0",
     "react-scripts": "0.9.5",
-    "tizen-utils": "^1.2.27"
+    "tizen-utils": "1.2.27"
   },
   "scripts": {
     "start": "react-scripts start",
