@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import scroll from 'smooth-move';
 
@@ -9,6 +8,7 @@ class List extends React.Component {
     super(props);
 
     this.onRotaryDetent = this.onRotaryDetent.bind(this);
+    this.onSelectItem = this.onSelectItem.bind(this);
   }
 
   componentDidMount() {
@@ -33,15 +33,20 @@ class List extends React.Component {
     }
   }
 
+  onSelectItem(itemId) {
+    this.props.onActivateOption(itemId);
+    this.context.router.history.push(`${this.context.router.route.location.pathname}/${itemId}`);
+  }
+
   render() {
-    const { options, match } = this.props;
+    const { options } = this.props;
 
     const items = options.map(item =>
       <Item
         key={item.id}
         id={item.id}
-        match={match}
-        selected={item.id === this.props.activeOptionId}
+        active={item.id === this.props.activeOptionId}
+        onSelect={this.onSelectItem}
       >
         {item.title}
       </Item>);
@@ -56,11 +61,14 @@ class List extends React.Component {
 
 List.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }).isRequired,
   activeOptionId: PropTypes.string.isRequired,
   onActivateOption: PropTypes.func.isRequired,
+};
+
+List.contextTypes = {
+  router: PropTypes.shape({
+    history: React.PropTypes.object.isRequired,
+  }),
 };
 
 const mapStateToProps = state => ({
@@ -79,19 +87,25 @@ export class Item extends React.Component {
     super(props);
 
     this.scrollToMiddle = this.scrollToMiddle.bind(this);
+    this.onSelect = this.onSelect.bind(this);
     this.element = null;
   }
 
   componentDidMount() {
-    if (this.props.selected) {
+    if (this.props.active) {
       window.setTimeout(() => this.scrollToMiddle(1), 0);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selected) {
-      window.setTimeout(() => this.scrollToMiddle(300), 0);
+    if (nextProps.active) {
+      window.setTimeout(() => this.scrollToMiddle(400), 0);
     }
+  }
+
+  onSelect(e) {
+    e.preventDefault();
+    this.props.onSelect(this.props.id);
   }
 
   scrollToMiddle(duration) {
@@ -105,11 +119,11 @@ export class Item extends React.Component {
   }
 
   render() {
-    const { id, selected, children, match } = this.props;
+    const { id, active, children } = this.props;
 
     return (
-      <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${selected ? ' ui-snap-listview-selected' : ''}`}>
-        <Link onClick={() => console.log(this)} id={id} to={`${match.url}/${id}`}>{children}</Link>
+      <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${active ? ' ui-snap-listview-selected' : ''}`}>
+        <a href={`#${id}`} onClick={this.onSelect} id={id}>{children}</a>
       </li>
     );
   }
@@ -117,17 +131,8 @@ export class Item extends React.Component {
 
 Item.propTypes = {
   id: PropTypes.string.isRequired,
-  selected: PropTypes.bool,
+  active: PropTypes.bool.isRequired,
   children: PropTypes.string.isRequired,
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-Item.defaultProps = {
-  selected: false,
-  match: {
-    url: '/',
-  },
+  onSelect: PropTypes.func.isRequired,
 };
 

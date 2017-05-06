@@ -100,7 +100,7 @@ class App extends Component {
 }
 
 App.contextTypes = {
-  router: React.PropTypes.shape({
+  router: PropTypes.shape({
     history: React.PropTypes.object.isRequired,
   }),
 };
