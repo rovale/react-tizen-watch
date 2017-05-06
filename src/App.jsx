@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import { Route, Switch, Link } from 'react-router-dom';
 import { Page, Header, Content } from './Page';
 import { ConnectedList } from './List';
@@ -51,20 +50,21 @@ Action.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-    if (this.props.location.pathname === '/') {
-      window.setTimeout(() => this.props.history.push('/main'), 1000);
+    if (this.context.router.route.location.pathname === '/') {
+      window.setTimeout(() => this.context.router.history.push('/main'), 1000);
     }
 
     window.addEventListener('tizenhwkey', (ev) => {
       if (ev.key || ev.keyName === 'back') {
-        if (this.props.location.pathname === '/main') {
+        if (this.context.router.route.location.pathname === '/main') {
           try {
+            console.log('Exiting.');
             window.tizen.application.getCurrentApplication().exit();
           } catch (err) {
             // ignore
           }
         } else {
-          this.props.history.goBack();
+          this.context.router.history.goBack();
         }
       }
     });
@@ -90,27 +90,19 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path="/" component={Splash} />
-          <Route exact path="/main" component={Main} />
-          <Route path="/main/:actionId" component={Action} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Splash} />
+        <Route exact path="/main" component={Main} />
+        <Route path="/main/:actionId" component={Action} />
+      </Switch>
     );
   }
 }
 
-App.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-    goBack: PropTypes.func.isRequired,
-  }).isRequired,
+App.contextTypes = {
+  router: React.PropTypes.shape({
+    history: React.PropTypes.object.isRequired,
+  }),
 };
 
-const AppWithRouter = withRouter(App);
-
-export default AppWithRouter;
+export default App;

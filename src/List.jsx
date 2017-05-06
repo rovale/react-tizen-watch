@@ -84,24 +84,24 @@ export class Item extends React.Component {
 
   componentDidMount() {
     if (this.props.selected) {
-      window.setTimeout(this.scrollToMiddle, 0);
+      window.setTimeout(() => this.scrollToMiddle(1), 0);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected) {
-      window.setTimeout(this.scrollToMiddle, 0);
+      window.setTimeout(() => this.scrollToMiddle(300), 0);
     }
   }
 
-  scrollToMiddle() {
+  scrollToMiddle(duration) {
     const itemRect = this.element.getBoundingClientRect();
     const itemHeight = itemRect.height;
     const scroller = document.getElementsByClassName('ui-scroller')[0];
     const scrollerHeight = scroller.getBoundingClientRect().height;
     const newScrollTop = (itemRect.top + scroller.scrollTop) - ((scrollerHeight - itemHeight) / 2);
 
-    scroll(scroller, { x: 0, y: newScrollTop, duration: 300 });
+    scroll(scroller, { x: 0, y: newScrollTop, duration });
   }
 
   render() {
@@ -109,7 +109,7 @@ export class Item extends React.Component {
 
     return (
       <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${selected ? ' ui-snap-listview-selected' : ''}`}>
-        <Link id={id} to={`${match.url}/${id}`}>{children}</Link>
+        <Link onClick={() => console.log(this)} id={id} to={`${match.url}/${id}`}>{children}</Link>
       </li>
     );
   }
