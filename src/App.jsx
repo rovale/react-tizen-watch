@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { Page, Header, Content } from './Page';
 import { ConnectedList } from './List';
 
-const Splash = () =>
-  <Page>
-    <Content>
-      <div className="small-processing-container">
-        <div className="ui-processing" />
-        <div className="ui-processing-text">
-          Waiting for 1 second!
-        </div>
-      </div>
-    </Content>
-  </Page>;
+class Splash extends Component {
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <Page>
+        <Content>
+          <div className="small-processing-container">
+            <div className="ui-processing" />
+            <div className="ui-processing-text">
+              Fetching data...
+            </div>
+          </div>
+        </Content>
+      </Page>
+    );
+  }
+}
 
 const Main = ({ match }) =>
   <Page>
@@ -90,18 +98,18 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
+      <div>
         <Route exact path="/" component={Splash} />
         <Route exact path="/main" component={Main} />
         <Route path="/main/:actionId" component={Action} />
-      </Switch>
+      </div>
     );
   }
 }
 
 App.contextTypes = {
   router: PropTypes.shape({
-    history: React.PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }),
 };
 

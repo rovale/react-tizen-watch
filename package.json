@@ -12,7 +12,8 @@
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.6.0",
-    "smooth-move": "1.0.1"
+    "smooth-move": "1.0.1",
+    "socket.io-client": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "3.19.0",

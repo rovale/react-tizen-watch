@@ -12,6 +12,9 @@ Deploying on the watch
 - Connect to the watch using the connection manager or the sdb cli
 - run npm install
 - run deploy.ps1
+
+TODO:
+  - [ ] improve settings location
 ---
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/rovale/react-tizen-watch.svg)](https://greenkeeper.io/)

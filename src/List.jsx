@@ -67,7 +67,7 @@ List.propTypes = {
 
 List.contextTypes = {
   router: PropTypes.shape({
-    history: React.PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }),
 };
 
