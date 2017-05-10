@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
-import { Page, Header, Content } from './Page';
-import { ConnectedList } from './List';
+import { Page, Header, Content } from './common/Page';
+import { Pages } from './Pages';
 
 class Splash extends Component {
   componentDidMount() {
@@ -24,19 +24,13 @@ class Splash extends Component {
   }
 }
 
-const Main = ({ match }) =>
+const Main = () =>
   <Page>
     <Header>React Tizen</Header>
     <Content>
-      <ConnectedList match={match} />
+      <Pages />
     </Content>
   </Page>;
-
-Main.propTypes = {
-  match: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 const Action = ({ match }) =>
   <Page>

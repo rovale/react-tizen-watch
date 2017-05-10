@@ -9,10 +9,10 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import reducer from './reducers';
 
 import initWebSocket from './common/webSocket';
-import ConnectedApp from './App';
+import App from './components/App';
 
-import './tau/wearable/theme/default/tau.css';
-import './tau/wearable/theme/default/tau.circle.css';
+import './common/tau/wearable/theme/default/tau.css';
+import './common/tau/wearable/theme/default/tau.circle.css';
 
 // eslint-disable-next-line no-underscore-dangle
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || reduxCompose;
@@ -26,7 +26,7 @@ initWebSocket(store);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <ConnectedApp />
+      <App />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),

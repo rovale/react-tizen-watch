@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import scroll from 'smooth-move';
 
-class List extends React.Component {
+export class List extends React.Component {
   constructor(props) {
     super(props);
 
@@ -71,17 +70,6 @@ List.contextTypes = {
   }),
 };
 
-const mapStateToProps = state => ({
-  options: state.list.options,
-  activeOptionId: state.list.activeOptionId,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onActivateOption: id => dispatch({ type: 'ACTIVATE_OPTION', id }),
-});
-
-export const ConnectedList = connect(mapStateToProps, mapDispatchToProps)(List);
-
 export class Item extends React.Component {
   constructor(props) {
     super(props);
@@ -135,4 +123,3 @@ Item.propTypes = {
   children: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
-
