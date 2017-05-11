@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { push } from 'react-router-redux';
 import settings from './settings';
 
 const initWebSocket = (store) => {
@@ -45,6 +46,8 @@ const initWebSocket = (store) => {
         pages,
       },
     });
+
+    store.dispatch(push('/main'));
   });
 
   socket.on('groups', (groups) => {

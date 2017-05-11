@@ -52,10 +52,6 @@ Action.propTypes = {
 
 class App extends Component {
   componentDidMount() {
-    if (this.context.router.route.location.pathname === '/') {
-      window.setTimeout(() => this.context.router.history.push('/main'), 1000);
-    }
-
     window.addEventListener('tizenhwkey', (ev) => {
       if (ev.key || ev.keyName === 'back') {
         if (this.context.router.route.location.pathname === '/main') {
@@ -72,8 +68,6 @@ class App extends Component {
     });
 
     window.addEventListener('keyup', (e) => {
-      // console.log(e);
-
       switch (e.key) {
         case 'ArrowRight':
           window.dispatchEvent(new CustomEvent('rotarydetent', { detail: { direction: 'CW' } }));

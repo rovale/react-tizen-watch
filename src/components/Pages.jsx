@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import { List } from './common/List';
 
-const mapStateToProps = state => ({
-  options: state.list.options,
-  activeOptionId: state.list.activeOptionId,
-});
+const mapStateToProps = (state) =>  {
+  return {
+    options: state.pages,
+    activeOptionId: state.ui.activePageId,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  onActivateOption: id => dispatch({ type: 'ACTIVATE_OPTION', id }),
+  onActivateOption: id => dispatch({ type: 'ACTIVATE_PAGE', id }),
 });
 
 export const Pages = connect(mapStateToProps, mapDispatchToProps)(List);

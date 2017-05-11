@@ -8,6 +8,7 @@
     },
     "rules": {
         "linebreak-style": "off",
-        "react/no-multi-comp": "off"
+        "react/no-multi-comp": "off",
+        "no-class-assign": "off"
     }
 }
