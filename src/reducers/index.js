@@ -1,9 +1,10 @@
 import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
+import * as actionType from '../actions/types';
 
 const pages = (state = [], action) => {
   switch (action.type) {
-    case 'LOAD_PAGES':
+    case actionType.LOAD_PAGES:
       return action.payload.pages.map(page => ({
         id: page.id,
         title: page.name,
@@ -16,9 +17,9 @@ const pages = (state = [], action) => {
 
 const ui = (state = { activePageId: null }, action) => {
   switch (action.type) {
-    case 'ACTIVATE_PAGE':
-      return { ...state, activePageId: action.id };
-    case 'LOAD_PAGES':
+    case actionType.ACTIVATE_PAGE:
+      return { ...state, activePageId: action.payload.id };
+    case actionType.LOAD_PAGES:
       return { ...state, activePageId: action.payload.pages[0].id };
     default:
       return state;

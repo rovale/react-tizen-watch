@@ -51,6 +51,12 @@ Action.propTypes = {
 };
 
 class App extends Component {
+  static contextTypes = {
+    router: PropTypes.shape({
+      history: PropTypes.object.isRequired,
+    }),
+  };
+
   componentDidMount() {
     window.addEventListener('tizenhwkey', (ev) => {
       if (ev.key || ev.keyName === 'back') {
@@ -94,11 +100,5 @@ class App extends Component {
     );
   }
 }
-
-App.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.object.isRequired,
-  }),
-};
 
 export default App;

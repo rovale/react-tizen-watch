@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-import { push } from 'react-router-redux';
 import settings from './settings';
+import * as action from '../actions/creators';
 
 const initWebSocket = (store) => {
   const socket = io(`${settings.protocol}://${settings.host}:${settings.port}/?username=${settings.userName}&password=${settings.password}`, {
@@ -40,14 +40,7 @@ const initWebSocket = (store) => {
   });
 
   socket.on('pages', (pages) => {
-    store.dispatch({
-      type: 'LOAD_PAGES',
-      payload: {
-        pages,
-      },
-    });
-
-    store.dispatch(push('/main'));
+    store.dispatch(action.loadPages(pages));
   });
 
   socket.on('groups', (groups) => {
