@@ -2,10 +2,13 @@ import { push } from 'react-router-redux';
 import * as actionType from '../actions/types';
 
 // eslint-disable-next-line arrow-parens
-const navigate = store => next => action => {
+const navigator = store => next => action => {
   const result = next(action);
 
   switch (action.type) {
+    case actionType.INITIALIZE_APP:
+      store.dispatch(push('/splash'));
+      break;
     case actionType.LOAD_PAGES:
       store.dispatch(push('/main'));
       break;
@@ -16,6 +19,6 @@ const navigate = store => next => action => {
   return result;
 };
 
-export default navigate;
+export default navigator;
 
 

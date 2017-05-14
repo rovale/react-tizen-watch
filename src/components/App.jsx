@@ -93,7 +93,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={Splash} />
+        <Route exact path="/splash" component={Splash} />
         <Route exact path="/main" component={Main} />
         <Route path="/main/:actionId" component={Action} />
       </div>
