@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onActivateOption: id => dispatch(action.activatePage(id)),
+  onSelectOption: id => dispatch(action.selectPage(id)),
 });
 
 export const Pages = connect(mapStateToProps, mapDispatchToProps)(List);

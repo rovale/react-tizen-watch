@@ -12,6 +12,9 @@ const navigator = store => next => action => {
     case actionType.LOAD_PAGES:
       store.dispatch(push('/main'));
       break;
+    case actionType.SELECT_PAGE:
+      store.dispatch(push(`/main/${action.payload.id}`));
+      break;
     default:
       break;
   }

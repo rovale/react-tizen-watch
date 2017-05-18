@@ -18,6 +18,7 @@ const pages = (state = [], action) => {
 const ui = (state = { activePageId: null }, action) => {
   switch (action.type) {
     case actionType.ACTIVATE_PAGE:
+    case actionType.SELECT_PAGE:
       return { ...state, activePageId: action.payload.id };
     case actionType.LOAD_PAGES:
       return { ...state, activePageId: action.payload.pages[0].id };

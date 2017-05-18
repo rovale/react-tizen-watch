@@ -33,8 +33,7 @@ export class List extends React.Component {
   }
 
   onSelectItem(itemId) {
-    this.props.onActivateOption(itemId);
-    this.context.router.history.push(`${this.context.router.route.location.pathname}/${itemId}`);
+    this.props.onSelectOption(itemId);
   }
 
   render() {
@@ -62,12 +61,7 @@ List.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeOptionId: PropTypes.string.isRequired,
   onActivateOption: PropTypes.func.isRequired,
-};
-
-List.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.object.isRequired,
-  }),
+  onSelectOption: PropTypes.func.isRequired,
 };
 
 export class Item extends React.Component {
