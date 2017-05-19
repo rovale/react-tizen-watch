@@ -1,74 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
-import { Page, Header, Content } from './common/Page';
-import { Pages } from './Pages';
 
-class Splash extends Component {
-  componentDidMount() {
-  }
-
-  render() {
-    return (
-      <Page>
-        <Content>
-          <div className="small-processing-container">
-            <div className="ui-processing" />
-            <div className="ui-processing-text">
-              Fetching data...
-            </div>
-          </div>
-        </Content>
-      </Page>
-    );
-  }
-}
-
-const Main = () =>
-  <Page>
-    <Header>React Tizen</Header>
-    <Content>
-      <Pages />
-    </Content>
-  </Page>;
-
-const Action = ({ match }) =>
-  <Page>
-    <Content>
-      Current action: {match.params.actionId}
-    </Content>
-    <footer className="ui-footer ui-bottom-button ui-fixed">
-      <Link to="/main" className="ui-btn">OK</Link>
-    </footer>
-  </Page>;
-
-Action.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      actionId: PropTypes.string.isRequired,
-    }),
-  }),
-};
+import * as action from '../actions/creators';
+import Splash from './Splash';
+import Pages from './Pages';
+import Page from './Page';
 
 class App extends Component {
-  static contextTypes = {
-    router: PropTypes.shape({
-      history: PropTypes.object.isRequired,
-    }),
+  static propTypes = {
+    mainRoute: PropTypes.string,
+    selectedPageId: PropTypes.string,
+    onClosePage: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     window.addEventListener('tizenhwkey', (ev) => {
       if (ev.key || ev.keyName === 'back') {
-        if (this.context.router.route.location.pathname === '/main') {
+        if (this.props.mainRoute === 'pages' && !this.props.selectedPageId) {
           try {
             console.log('Exiting.');
             window.tizen.application.getCurrentApplication().exit();
           } catch (err) {
             // ignore
           }
-        } else {
-          this.context.router.history.goBack();
+        } else if (this.props.mainRoute === "pages" && this.props.selectedPageId) {
+          this.props.onClosePage();
         }
       }
     });
@@ -93,12 +50,24 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/splash" component={Splash} />
-        <Route exact path="/main" component={Main} />
-        <Route path="/main/:actionId" component={Action} />
+        {this.props.mainRoute === "splash" && <Splash />}
+        {this.props.mainRoute === "pages" && !this.props.selectedPageId && <Pages />}
+        {this.props.mainRoute === "pages" && this.props.selectedPageId && <Page />}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+    mainRoute: state.ui.mainRoute,
+    selectedPageId: state.ui.selectedPageId,
+  }
+);
+
+const mapDispatchToProps = dispatch => ({
+  onClosePage: () => dispatch(action.closePage()),
+});
+
+App = connect(mapStateToProps, mapDispatchToProps)(App)
 
 export default App;

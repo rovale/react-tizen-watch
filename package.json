@@ -3,14 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "4.6.1",
-    "prop-types": "15.5.8",
+    "prop-types": "15.5.10",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-    "react-redux": "5.0.4",
-    "react-router": "4.1.1",
-    "react-router-dom": "4.1.1",
-    "react-router-redux": "5.0.0-alpha.6",
+    "react-redux": "5.0.5",
     "redux": "3.6.0",
     "smooth-move": "1.0.1",
     "socket.io-client": "^2.0.1"

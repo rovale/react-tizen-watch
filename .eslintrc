@@ -9,6 +9,7 @@
     "rules": {
         "linebreak-style": "off",
         "react/no-multi-comp": "off",
-        "no-class-assign": "off"
+        "no-class-assign": "off",
+        "import/no-mutable-exports": "off"
     }
 }
