@@ -6,16 +6,6 @@ import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
 
-const mapStateToProps = state => ({
-  pages: state.pages,
-  activePageId: state.ui.activePageId,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onActivatePage: id => dispatch(action.activatePage(id)),
-  onSelectPage: id => dispatch(action.selectPage(id)),
-});
-
 let Pages = ({ pages, activePageId, onActivatePage, onSelectPage }) =>
   <UiPage>
     <Header>React Tizen</Header>
@@ -35,6 +25,16 @@ Pages.propTypes = {
   onActivatePage: PropTypes.func.isRequired,
   onSelectPage: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = state => ({
+  pages: state.pages,
+  activePageId: state.ui.activePageId || state.pages[0].id,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onActivatePage: id => dispatch(action.activatePage(id)),
+  onSelectPage: id => dispatch(action.selectPage(id)),
+});
 
 Pages = connect(mapStateToProps, mapDispatchToProps)(Pages);
 

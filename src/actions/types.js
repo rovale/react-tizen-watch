@@ -1,5 +1,10 @@
 export const INITIALIZE_APP = 'INITIALIZE_APP';
 export const LOAD_PAGES = 'LOAD_PAGES';
+export const LOAD_DEVICES = 'LOAD_DEVICES';
+export const LOAD_GROUPS = 'LOAD_GROUPS';
 export const ACTIVATE_PAGE = 'ACTIVATE_PAGE';
 export const SELECT_PAGE = 'SELECT_PAGE';
 export const CLOSE_PAGE = 'CLOSE_PAGE';
+export const ACTIVATE_DEVICE = 'ACTIVATE_DEVICE';
+export const SELECT_DEVICE = 'SELECT_DEVICE';
+export const CLOSE_DEVICE = 'CLOSE_DEVICE';

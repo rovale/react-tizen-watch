@@ -25,8 +25,7 @@ const initWebSocket = (store) => {
   });
 
   socket.on('devices', (devices) => {
-    console.log('devices');
-    console.log(devices);
+    store.dispatch(action.loadDevices(devices));
   });
 
   socket.on('rules', (rules) => {
@@ -44,8 +43,7 @@ const initWebSocket = (store) => {
   });
 
   socket.on('groups', (groups) => {
-    console.log('groups');
-    console.log(groups);
+    store.dispatch(action.loadGroups(groups));
   });
 
     // socket.on('deviceAttributeChanged', (attrEvent) => {

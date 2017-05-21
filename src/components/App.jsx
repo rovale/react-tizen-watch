@@ -6,12 +6,15 @@ import * as action from '../actions/creators';
 import Splash from './Splash';
 import Pages from './Pages';
 import Page from './Page';
+import Device from './Device';
 
 class App extends Component {
   static propTypes = {
     mainRoute: PropTypes.string,
     selectedPageId: PropTypes.string,
+    selectedDeviceId: PropTypes.string,
     onClosePage: PropTypes.func.isRequired,
+    onCloseDevice: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -24,8 +27,10 @@ class App extends Component {
           } catch (err) {
             // ignore
           }
-        } else if (this.props.mainRoute === "pages" && this.props.selectedPageId) {
+        } else if (this.props.mainRoute === "pages" && this.props.selectedPageId && !this.props.selectedDeviceId) {
           this.props.onClosePage();
+        } else if (this.props.mainRoute === "pages" && this.props.selectedPageId && this.props.selectedDeviceId) {
+          this.props.onCloseDevice();
         }
       }
     });
@@ -52,7 +57,8 @@ class App extends Component {
       <div>
         {this.props.mainRoute === "splash" && <Splash />}
         {this.props.mainRoute === "pages" && !this.props.selectedPageId && <Pages />}
-        {this.props.mainRoute === "pages" && this.props.selectedPageId && <Page />}
+        {this.props.mainRoute === "pages" && this.props.selectedPageId && !this.props.selectedDeviceId && <Page />}
+        {this.props.mainRoute === "pages" && this.props.selectedPageId && this.props.selectedDeviceId && <Device />}
       </div>
     );
   }
@@ -61,11 +67,13 @@ class App extends Component {
 const mapStateToProps = state => ({
     mainRoute: state.ui.mainRoute,
     selectedPageId: state.ui.selectedPageId,
+    selectedDeviceId: state.ui.selectedDeviceId,
   }
 );
 
 const mapDispatchToProps = dispatch => ({
   onClosePage: () => dispatch(action.closePage()),
+  onCloseDevice: () => dispatch(action.closeDevice()),
 });
 
 App = connect(mapStateToProps, mapDispatchToProps)(App)

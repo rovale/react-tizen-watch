@@ -2,32 +2,46 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Page as UiPage, Content } from './common/Page';
 import * as action from '../actions/creators';
+import { Page as UiPage, Header, Content } from './common/Page';
+import { List } from './common/List';
 
-let Action = ({ selectedPageId, onClosePage }) =>
+let Page = ({ pageTitle, devices, activeDeviceId, onActivateDevice, onSelectDevice }) =>
   <UiPage>
+    <Header>{pageTitle}</Header>
     <Content>
-      Current page: {selectedPageId}
+      <List
+        options={devices}
+        activeOptionId={activeDeviceId}
+        onActivateOption={onActivateDevice}
+        onSelectOption={onSelectDevice}
+      />
     </Content>
-    <footer className="ui-footer ui-bottom-button ui-fixed">
-      <a href="#close" onClick={onClosePage} className="ui-btn">OK</a>
-    </footer>
   </UiPage>;
 
-Action.propTypes = {
-  selectedPageId: PropTypes.string.isRequired,
-  onClosePage: PropTypes.func.isRequired,
+Page.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  devices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeDeviceId: PropTypes.string.isRequired,
+  onActivateDevice: PropTypes.func.isRequired,
+  onSelectDevice: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  selectedPageId: state.ui.selectedPageId,
-});
+const mapStateToProps = (state) => {
+  const selectedPage = state.pages.find(p => p.id === state.ui.selectedPageId);
+
+  return {
+    pageTitle: selectedPage.title,
+    devices: selectedPage.devices.map(pd => state.devices.find(d => pd === d.id)),
+    activeDeviceId: state.ui.activeDeviceId || selectedPage.devices[0],
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  onClosePage: () => dispatch(action.closePage()),
+  onActivateDevice: id => dispatch(action.activateDevice(id)),
+  onSelectDevice: id => dispatch(action.selectDevice(id)),
 });
 
-Action = connect(mapStateToProps, mapDispatchToProps)(Action);
+Page = connect(mapStateToProps, mapDispatchToProps)(Page);
 
-export default Action;
+export default Page;
