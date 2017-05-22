@@ -46,10 +46,12 @@ const initWebSocket = (store) => {
     store.dispatch(action.loadGroups(groups));
   });
 
-    // socket.on('deviceAttributeChanged', (attrEvent) => {
-    //   console.log('deviceAttributeChanged');
-    //   console.log(attrEvent);
-    // });
+  socket.on('deviceAttributeChanged', (event) => {
+    console.log(event);
+    if (event.attributeName === 'state') {
+      store.dispatch(action.changeDeviceAttribute(event));
+    }
+  });
 };
 
 export default initWebSocket;

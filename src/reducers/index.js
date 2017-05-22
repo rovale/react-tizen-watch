@@ -14,13 +14,33 @@ const pages = (state = [], action) => {
   }
 };
 
+const device = (state = {}, action) => {
+  switch (action.type) {
+    case actionType.CHANGE_DEVICE_ATTRIBUTE:
+      if (action.payload.event.deviceId === state.id) {
+        console.log(`Device ${state.id} changed.`);
+        const newState = { ...state };
+        newState[action.payload.event.attributeName] = action.payload.event.value;
+        return newState;
+      }
+
+      return state;
+    default:
+      return state;
+  }
+};
+
 const devices = (state = [], action) => {
   switch (action.type) {
     case actionType.LOAD_DEVICES:
-      return action.payload.devices.map(device => ({
-        id: device.id,
-        title: device.name,
+      return action.payload.devices.map(d => ({
+        id: d.id,
+        title: d.name,
+        template: d.template,
+        state: (d.template === 'switch') ? d.attributes[0].value : null,
       }));
+    case actionType.CHANGE_DEVICE_ATTRIBUTE:
+      return state.map(d => device(d, action));
     default:
       return state;
   }

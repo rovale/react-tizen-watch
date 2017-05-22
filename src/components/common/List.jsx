@@ -46,7 +46,7 @@ export class List extends React.Component {
         active={item.id === this.props.activeOptionId}
         onSelect={this.onSelectItem}
       >
-        {item.title}
+        {`${item.title} ${item.state || ''}`}
       </Item>);
 
     return (

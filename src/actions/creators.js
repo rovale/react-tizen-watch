@@ -12,3 +12,4 @@ export const closePage = () => ({ type: actionType.CLOSE_PAGE });
 export const activateDevice = id => ({ type: actionType.ACTIVATE_DEVICE, payload: { id } });
 export const selectDevice = id => ({ type: actionType.SELECT_DEVICE, payload: { id } });
 export const closeDevice = () => ({ type: actionType.CLOSE_DEVICE });
+export const changeDeviceAttribute = event => ({ type: actionType.CHANGE_DEVICE_ATTRIBUTE, payload: { event } });
