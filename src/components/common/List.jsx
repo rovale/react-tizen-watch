@@ -44,9 +44,9 @@ export class List extends React.Component {
         key={item.id}
         id={item.id}
         active={item.id === this.props.activeOptionId}
-        onSelect={this.onSelectItem}
+        onSelect={item.onSelect || this.onSelectItem}
       >
-        {`${item.title} ${item.state || ''}`}
+        {item.content || <div>{item.title}</div>}
       </Item>);
 
     return (
@@ -114,6 +114,6 @@ export class Item extends React.Component {
 Item.propTypes = {
   id: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
   onSelect: PropTypes.func.isRequired,
 };

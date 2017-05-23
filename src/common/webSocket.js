@@ -2,8 +2,10 @@ import io from 'socket.io-client';
 import settings from './settings';
 import * as action from '../actions/creators';
 
-const initWebSocket = (store) => {
-  const socket = io(`${settings.protocol}://${settings.host}:${settings.port}/?username=${settings.userName}&password=${settings.password}`, {
+let socket;
+
+export const initWebSocket = (store) => {
+  socket = io(`${settings.protocol}://${settings.host}:${settings.port}/?username=${settings.userName}&password=${settings.password}`, {
     reconnection: true,
     reconnectionDelay: 1000,
     reconnectionDelayMax: 3000,
@@ -48,10 +50,19 @@ const initWebSocket = (store) => {
 
   socket.on('deviceAttributeChanged', (event) => {
     console.log(event);
-    if (event.attributeName === 'state') {
+    if (event.deviceId !== 'syssensor' && event.deviceId !== 'temperature') {
       store.dispatch(action.changeDeviceAttribute(event));
     }
   });
 };
 
-export default initWebSocket;
+export const toggleSwitch = (id) => {
+  socket.emit('call', {
+    id: 'callDeviceAction',
+    action: 'callDeviceAction',
+    params: {
+      deviceId: id,
+      actionName: 'toggle',
+    },
+  });
+};

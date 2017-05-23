@@ -13,3 +13,5 @@ export const activateDevice = id => ({ type: actionType.ACTIVATE_DEVICE, payload
 export const selectDevice = id => ({ type: actionType.SELECT_DEVICE, payload: { id } });
 export const closeDevice = () => ({ type: actionType.CLOSE_DEVICE });
 export const changeDeviceAttribute = event => ({ type: actionType.CHANGE_DEVICE_ATTRIBUTE, payload: { event } });
+
+export const toggleSwitch = id => ({ type: actionType.TOGGLE_SWITCH, payload: { id } });

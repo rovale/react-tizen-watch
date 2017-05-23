@@ -6,18 +6,40 @@ import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
 
-let Page = ({ pageTitle, devices, activeDeviceId, onActivateDevice, onSelectDevice }) =>
-  <UiPage>
+let Page = ({ pageTitle, devices, activeDeviceId,
+  onActivateDevice, onSelectDevice, onToggleSwitch }) => {
+  const getListItemContent = (item) => {
+    if (item.template === 'switch') {
+      return <div>{`${item.title} (${item.attributes[0].value})`}</div>;
+    }
+    return <div>{`${item.title}`}</div>;
+  };
+
+  const getOnSelect = (item) => {
+    if (item.template === 'switch') {
+      return () => onToggleSwitch(item.id);
+    }
+    return null;
+  };
+
+  const deviceOptions = devices.map(d => ({
+    ...d,
+    content: getListItemContent(d),
+    onSelect: getOnSelect(d),
+  }));
+
+  return (<UiPage>
     <Header>{pageTitle}</Header>
     <Content>
       <List
-        options={devices}
+        options={deviceOptions}
         activeOptionId={activeDeviceId}
         onActivateOption={onActivateDevice}
         onSelectOption={onSelectDevice}
       />
     </Content>
-  </UiPage>;
+  </UiPage>);
+};
 
 Page.propTypes = {
   pageTitle: PropTypes.string.isRequired,
@@ -25,6 +47,7 @@ Page.propTypes = {
   activeDeviceId: PropTypes.string.isRequired,
   onActivateDevice: PropTypes.func.isRequired,
   onSelectDevice: PropTypes.func.isRequired,
+  onToggleSwitch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -40,6 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   onActivateDevice: id => dispatch(action.activateDevice(id)),
   onSelectDevice: id => dispatch(action.selectDevice(id)),
+  onToggleSwitch: id => dispatch(action.toggleSwitch(id)),
 });
 
 Page = connect(mapStateToProps, mapDispatchToProps)(Page);

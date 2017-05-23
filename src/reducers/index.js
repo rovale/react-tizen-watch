@@ -14,13 +14,32 @@ const pages = (state = [], action) => {
   }
 };
 
+const attribute = (state = {}, action) => {
+  switch (action.type) {
+    case actionType.CHANGE_DEVICE_ATTRIBUTE:
+      if (action.payload.event.attributeName === state.name) {
+        console.log(`Attribute ${state.name} changed.`);
+        return {
+          ...state,
+          value: action.payload.event.value,
+        };
+      }
+
+      return state;
+    default:
+      return state;
+  }
+};
+
 const device = (state = {}, action) => {
   switch (action.type) {
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       if (action.payload.event.deviceId === state.id) {
         console.log(`Device ${state.id} changed.`);
-        const newState = { ...state };
-        newState[action.payload.event.attributeName] = action.payload.event.value;
+        const newState = {
+          ...state,
+          attributes: state.attributes.map(a => attribute(a, action)),
+        };
         return newState;
       }
 
@@ -37,7 +56,7 @@ const devices = (state = [], action) => {
         id: d.id,
         title: d.name,
         template: d.template,
-        state: (d.template === 'switch') ? d.attributes[0].value : null,
+        attributes: d.attributes,
       }));
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       return state.map(d => device(d, action));
@@ -52,7 +71,7 @@ const groups = (state = [], action) => {
       return action.payload.groups.map(group => ({
         id: group.id,
         title: group.name,
-        devices: group.devices.map(device => device.deviceId),
+        devices: group.devices.map(d => d.deviceId),
       }));
     default:
       return state;
