@@ -80,7 +80,7 @@ export class Item extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.active) {
+    if (nextProps.active && !this.props.active) {
       window.setTimeout(() => this.scrollToMiddle(400), 0);
     }
   }

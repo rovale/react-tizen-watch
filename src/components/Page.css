@@ -1,0 +1,8 @@
+.switch-off {
+  color: gray;
+}
+
+.switch-on {
+  color: green;
+  font-weight: bold;
+}

@@ -6,11 +6,19 @@ import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
 
+import './Page.css';
+
 let Page = ({ pageTitle, devices, activeDeviceId,
   onActivateDevice, onSelectDevice, onToggleSwitch }) => {
   const getListItemContent = (item) => {
     if (item.template === 'switch') {
-      return <div>{`${item.title} (${item.attributes[0].value})`}</div>;
+      return (
+        <div>
+          {(item.attributes[0].value) ?
+            <i className="fa fa-power-off switch-on" aria-hidden="true" /> :
+            <i className="fa fa-power-off switch-off" aria-hidden="true" />}
+          &nbsp;{item.title}
+        </div>);
     }
     return <div>{`${item.title}`}</div>;
   };
