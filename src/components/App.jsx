@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as action from '../actions/creators';
+import Error from './Error';
 import Splash from './Splash';
 import Pages from './Pages';
 import Page from './Page';
@@ -55,6 +56,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {this.props.mainRoute === "error" && <Error />}
         {this.props.mainRoute === "splash" && <Splash />}
         {this.props.mainRoute === "pages" && !this.props.selectedPageId && <Pages />}
         {this.props.mainRoute === "pages" && this.props.selectedPageId && !this.props.selectedDeviceId && <Page />}

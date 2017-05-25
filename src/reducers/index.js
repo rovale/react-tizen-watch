@@ -80,6 +80,7 @@ const groups = (state = [], action) => {
 };
 
 const initialUiState = {
+  error: null,
   mainRoute: null,
   activePageId: null,
   selectedPageId: null,
@@ -92,6 +93,18 @@ const ui = (state = initialUiState, action) => {
   switch (action.type) {
     case actionType.INITIALIZE_APP:
       return { ...state, mainRoute: 'splash' };
+    case actionType.HANDLE_ERROR:
+      return {
+        ...state,
+        mainRoute: 'error',
+        error: {
+          msg: action.payload.msg,
+          url: action.payload.url,
+          lineNo: action.payload.lineNo,
+          columnNo: action.payload.columnNo,
+          error: action.payload.error,
+        },
+      };
     case actionType.LOAD_PAGES:
       return { ...state, mainRoute: 'pages' };
 

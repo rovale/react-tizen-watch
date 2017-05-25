@@ -1,4 +1,5 @@
 export const INITIALIZE_APP = 'INITIALIZE_APP';
+export const HANDLE_ERROR = 'HANDLE_ERROR';
 
 export const LOAD_PAGES = 'LOAD_PAGES';
 export const LOAD_DEVICES = 'LOAD_DEVICES';

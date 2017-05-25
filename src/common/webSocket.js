@@ -5,6 +5,8 @@ import * as action from '../actions/creators';
 let socket;
 
 export const initWebSocket = (store) => {
+  console.log('connecting');
+
   socket = io(`${settings.protocol}://${settings.host}:${settings.port}/?username=${settings.userName}&password=${settings.password}`, {
     reconnection: true,
     reconnectionDelay: 1000,
@@ -14,16 +16,16 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('connect', () => {
-    // console.log('connected');
+    console.log('connected');
   });
 
   socket.on('event', (data) => {
-    // console.log('event');
-    // console.log(data);
+    console.log('event');
+    console.log(data);
   });
 
   socket.on('disconnect', () => {
-    // console.log('disconnected');
+    console.log('disconnected');
   });
 
   socket.on('devices', (devices) => {
@@ -31,13 +33,13 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('rules', (rules) => {
-    // console.log('rules');
-    // console.log(rules);
+    console.log('rules');
+    console.log(rules);
   });
 
   socket.on('variables', (variables) => {
-    // console.log('variables');
-    // console.log(variables);
+    console.log('variables');
+    console.log(variables);
   });
 
   socket.on('pages', (pages) => {
@@ -49,7 +51,7 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('deviceAttributeChanged', (event) => {
-    // console.log(event);
+    console.log(event);
     if (event.deviceId !== 'syssensor' && event.deviceId !== 'temperature') {
       store.dispatch(action.changeDeviceAttribute(event));
     }

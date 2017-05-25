@@ -14,6 +14,9 @@ import './common/tau/wearable/theme/default/tau.css';
 import './common/tau/wearable/theme/default/tau.circle.css';
 import './common/font-awesome-4.7.0/css/font-awesome.css';
 
+// Array.prototype.find / findIndex does not exist on Tizen 2.3.2.
+require('es6-shim');
+
 // eslint-disable-next-line no-underscore-dangle
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || reduxCompose;
 const enhancer = compose(applyMiddleware(
@@ -21,6 +24,13 @@ const enhancer = compose(applyMiddleware(
 ));
 
 const store = createStore(reducer, enhancer);
+
+window.onerror = (msg, url, lineNo, columnNo, error) => {
+  console.log(error);
+  store.dispatch(action.handleError(msg, url, lineNo, columnNo, error));
+  return false;
+};
+
 store.dispatch(action.initializeApp());
 
 ReactDOM.render(

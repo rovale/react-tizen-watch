@@ -7,6 +7,7 @@ $buildResultFolder = "$($buildFolder).buildResult"
 
 Set-Location $folder
 npm run build
+Remove-Item "$($buildFolder)\static\js\*.map"
 
 Write-Host "-- Clean"
 &$tizen clean -- $buildFolder
