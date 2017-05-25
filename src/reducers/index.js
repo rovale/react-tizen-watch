@@ -57,6 +57,7 @@ const devices = (state = [], action) => {
         title: d.name,
         template: d.template,
         attributes: d.attributes,
+        config: d.config,
       }));
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       return state.map(d => device(d, action));
@@ -84,6 +85,7 @@ const initialUiState = {
   selectedPageId: null,
   activeDeviceId: null,
   selectedDeviceId: null,
+  activeButtonId: null,
 };
 
 const ui = (state = initialUiState, action) => {
@@ -106,6 +108,10 @@ const ui = (state = initialUiState, action) => {
       return { ...state, activeDeviceId: action.payload.id, selectedDeviceId: action.payload.id };
     case actionType.CLOSE_DEVICE:
       return { ...state, selectedDeviceId: null };
+
+    case actionType.ACTIVATE_BUTTON:
+      return { ...state, activeButtonId: action.payload.id };
+
     default:
       return state;
   }
