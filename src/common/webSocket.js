@@ -14,16 +14,16 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('connect', () => {
-    console.log('connected');
+    // console.log('connected');
   });
 
   socket.on('event', (data) => {
-    console.log('event');
-    console.log(data);
+    // console.log('event');
+    // console.log(data);
   });
 
   socket.on('disconnect', () => {
-    console.log('disconnected');
+    // console.log('disconnected');
   });
 
   socket.on('devices', (devices) => {
@@ -31,13 +31,13 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('rules', (rules) => {
-    console.log('rules');
-    console.log(rules);
+    // console.log('rules');
+    // console.log(rules);
   });
 
   socket.on('variables', (variables) => {
-    console.log('variables');
-    console.log(variables);
+    // console.log('variables');
+    // console.log(variables);
   });
 
   socket.on('pages', (pages) => {
@@ -49,7 +49,7 @@ export const initWebSocket = (store) => {
   });
 
   socket.on('deviceAttributeChanged', (event) => {
-    console.log(event);
+    // console.log(event);
     if (event.deviceId !== 'syssensor' && event.deviceId !== 'temperature') {
       store.dispatch(action.changeDeviceAttribute(event));
     }
@@ -63,6 +63,18 @@ export const toggleSwitch = (id) => {
     params: {
       deviceId: id,
       actionName: 'toggle',
+    },
+  });
+};
+
+export const clickButton = (deviceId, buttonId) => {
+  socket.emit('call', {
+    id: 'callDeviceAction',
+    action: 'callDeviceAction',
+    params: {
+      deviceId,
+      buttonId,
+      actionName: 'buttonPressed',
     },
   });
 };
