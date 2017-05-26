@@ -6,12 +6,33 @@ import { List } from './common/List';
 
 import * as action from '../actions/creators';
 
+import './ButtonsDevice.css';
+
 let ButtonsDevice = ({ device, activeButtonId, onActivateButton, onClickButton }) => {
   const buttons = device.config.buttons;
   const activeOptionId = activeButtonId || buttons[0].id;
 
+  const getListItemContent = (button) => {
+    return (
+      <div>
+        <div className="vertical-align-middle">
+          <input
+            type="radio"
+            readOnly
+            checked={button.id === device.attributes[0].value}
+          />
+        </div>
+        <div className="vertical-align-middle">
+          &nbsp;{button.text}
+        </div>
+      </div>);
+  };
+
   return (<List
-    options={buttons.map(b => ({ id: b.id, title: b.text }))}
+    options={buttons.map(b => ({
+      id: b.id,
+      content: getListItemContent(b),
+    }))}
     activeOptionId={activeOptionId}
     onActivateOption={onActivateButton}
     onSelectOption={onClickButton}

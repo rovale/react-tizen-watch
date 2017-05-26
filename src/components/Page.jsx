@@ -14,10 +14,17 @@ let Page = ({ pageTitle, devices, activeDeviceId,
     if (item.template === 'switch') {
       return (
         <div>
-          {(item.attributes[0].value) ?
-            <i className="fa fa-power-off switch-on" aria-hidden="true" /> :
-            <i className="fa fa-power-off switch-off" aria-hidden="true" />}
-          &nbsp;{item.title}
+          <div className="ui-toggleswitch vertical-align-middle">
+            <input
+              type="checkbox"
+              className="ui-switch-input"
+              readOnly checked={item.attributes[0].value}
+            />
+            <div className="ui-switch-button" />
+          </div>
+          <div className="vertical-align-middle">
+            &nbsp;{item.title}
+          </div>
         </div>);
     }
     return <div>{`${item.title}`}</div>;

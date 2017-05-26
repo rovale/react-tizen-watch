@@ -1,4 +1,5 @@
 .vertical-align-middle {
+  height: 76px;
   display:inline-block;
   vertical-align:middle;
 }

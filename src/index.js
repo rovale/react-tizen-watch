@@ -12,7 +12,6 @@ import App from './components/App';
 
 import './common/tau/wearable/theme/default/tau.css';
 import './common/tau/wearable/theme/default/tau.circle.css';
-import './common/font-awesome-4.7.0/css/font-awesome.css';
 
 // Array.prototype.find / findIndex does not exist on Tizen 2.3.2.
 require('es6-shim');

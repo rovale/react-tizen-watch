@@ -122,7 +122,12 @@ const ui = (state = initialUiState, action) => {
     case actionType.CLOSE_DEVICE:
       return { ...state, selectedDeviceId: null };
 
+    case actionType.TOGGLE_SWITCH:
+      return { ...state, activeDeviceId: action.payload.id };
+
     case actionType.ACTIVATE_BUTTON:
+      return { ...state, activeButtonId: action.payload.id };
+    case actionType.CLICK_BUTTON:
       return { ...state, activeButtonId: action.payload.id };
 
     default:
