@@ -5,36 +5,38 @@ import PropTypes from 'prop-types';
 import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
-
-import './Page.css';
+import Switch from './deviceItem/Switch';
+import Display from './deviceItem/Display';
+import Presence from './deviceItem/Presence';
+import Temperature from './deviceItem/Temperature';
+import Thermostat from './deviceItem/Thermostat';
 
 let Page = ({ pageTitle, devices, activeDeviceId,
   onActivateDevice, onSelectDevice, onToggleSwitch }) => {
-  const getListItemContent = (item) => {
-    if (item.template === 'switch') {
-      return (
-        <div>
-          <div className="ui-toggleswitch vertical-align-middle">
-            <input
-              type="checkbox"
-              className="ui-switch-input"
-              readOnly checked={item.attributes[0].value}
-            />
-            <div className="ui-switch-button" />
-          </div>
-          <div className="vertical-align-middle">
-            &nbsp;{item.title}
-          </div>
-        </div>);
+  const getListItemContent = (device) => {
+    switch (device.template) {
+      case 'device':
+        return <Display device={device} />;
+      case 'presence':
+        return <Presence device={device} />;
+      case 'switch':
+        return <Switch device={device} />;
+      case 'temperature':
+        return <Temperature device={device} />;
+      case 'thermostat':
+        return <Thermostat device={device} />;
+      default:
+        return <div>{`${device.title} - (${device.template})`}</div>;
     }
-    return <div>{`${item.title}`}</div>;
   };
 
-  const getOnSelect = (item) => {
-    if (item.template === 'switch') {
-      return () => onToggleSwitch(item.id);
+  const getOnSelect = (device) => {
+    switch (device.template) {
+      case 'switch':
+        return () => onToggleSwitch(device.id);
+      default:
+        return null;
     }
-    return null;
   };
 
   const deviceOptions = devices.map(d => ({

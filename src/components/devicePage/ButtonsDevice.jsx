@@ -2,31 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { List } from './common/List';
+import { List } from '../common/List';
 
-import * as action from '../actions/creators';
-
-import './ButtonsDevice.css';
+import * as action from '../../actions/creators';
 
 let ButtonsDevice = ({ device, activeButtonId, onActivateButton, onClickButton }) => {
   const buttons = device.config.buttons;
   const activeOptionId = activeButtonId || buttons[0].id;
 
-  const getListItemContent = (button) => {
-    return (
-      <div>
-        <div className="vertical-align-middle">
-          <input
-            type="radio"
-            readOnly
-            checked={button.id === device.attributes[0].value}
-          />
-        </div>
-        <div className="vertical-align-middle">
-          &nbsp;{button.text}
-        </div>
-      </div>);
-  };
+  const getListItemContent = button => (
+    <div>
+      <div className="vertical-align-middle">
+        <input
+          type="radio"
+          readOnly
+          checked={button.id === device.attributes[0].value}
+        />
+      </div>
+      <div className="vertical-align-middle">
+        &nbsp;{button.text}
+      </div>
+    </div>);
 
   return (<List
     options={buttons.map(b => ({
@@ -40,7 +36,10 @@ let ButtonsDevice = ({ device, activeButtonId, onActivateButton, onClickButton }
 };
 
 ButtonsDevice.propTypes = {
-  device: PropTypes.object.isRequired,
+  device: PropTypes.shape({
+    attributes: PropTypes.array.isRequired,
+    config: PropTypes.object.isRequired,
+  }).isRequired,
   activeButtonId: PropTypes.string,
   onActivateButton: PropTypes.func.isRequired,
   onClickButton: PropTypes.func.isRequired,

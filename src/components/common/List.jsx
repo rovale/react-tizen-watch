@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import scroll from 'smooth-move';
 
+import './List.css';
+
 export class List extends React.Component {
   constructor(props) {
     super(props);

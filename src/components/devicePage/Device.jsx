@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Page as UiPage, Header, Content } from './common/Page';
+import { Page as UiPage, Header, Content } from '../common/Page';
 import ButtonsDevice from './ButtonsDevice';
-import * as action from '../actions/creators';
+import * as action from '../../actions/creators';
 
 let Device = ({ device, onClose }) => {
   const getDeviceContent = () => {

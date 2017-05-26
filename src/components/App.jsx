@@ -7,7 +7,7 @@ import Error from './Error';
 import Splash from './Splash';
 import Pages from './Pages';
 import Page from './Page';
-import Device from './Device';
+import Device from './devicePage/Device';
 
 class App extends Component {
   static propTypes = {
