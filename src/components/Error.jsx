@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Page, Header, Content } from './common/Page';
 
-let Error = ({ msg, url, lineNo, columnNo, error }) =>
+const Error = ({
+  msg, url, lineNo, columnNo, error,
+}) => (
   <Page>
     <Header>Error</Header>
     <Content>
@@ -13,7 +16,18 @@ let Error = ({ msg, url, lineNo, columnNo, error }) =>
       ColumnNo: {columnNo}<br />
       Error: {!!error && error.stack }
     </Content>
-  </Page>;
+  </Page>
+);
+
+Error.propTypes = {
+  msg: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  lineNo: PropTypes.number.isRequired,
+  columnNo: PropTypes.number.isRequired,
+  error: PropTypes.shape({
+    stack: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 const mapStateToProps = state => ({
   msg: state.ui.error.msg,
@@ -23,6 +37,4 @@ const mapStateToProps = state => ({
   error: state.ui.error.error,
 });
 
-Error = connect(mapStateToProps)(Error);
-
-export default Error;
+export default connect(mapStateToProps)(Error);

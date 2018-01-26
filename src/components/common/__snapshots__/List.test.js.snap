@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the List component it should contain the provided items 1`] = `
+<ul
+  className="ui-listview ui-snap-listview"
+>
+  <Item
+    active={true}
+    id="option1"
+    key="option1"
+    onSelect={[Function]}
+  >
+    <li
+      className="ui-snap-listview-item ui-snap-listview-selected"
+    >
+      <a
+        href="#option1"
+        id="option1"
+        onClick={[Function]}
+      >
+        <div>
+          Option 1
+        </div>
+      </a>
+    </li>
+  </Item>
+  <Item
+    active={false}
+    id="option2"
+    key="option2"
+    onSelect={[Function]}
+  >
+    <li
+      className="ui-snap-listview-item"
+    >
+      <a
+        href="#option2"
+        id="option2"
+        onClick={[Function]}
+      >
+        <div>
+          <b>
+            Option 2
+          </b>
+        </div>
+      </a>
+    </li>
+  </Item>
+  <Item
+    active={false}
+    id="option3"
+    key="option3"
+    onSelect={[Function]}
+  >
+    <li
+      className="ui-snap-listview-item"
+    >
+      <a
+        href="#option3"
+        id="option3"
+        onClick={[Function]}
+      >
+        <div>
+          Option 3
+        </div>
+      </a>
+    </li>
+  </Item>
+</ul>
+`;

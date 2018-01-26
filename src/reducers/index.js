@@ -18,7 +18,6 @@ const attribute = (state = {}, action) => {
   switch (action.type) {
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       if (action.payload.event.attributeName === state.name) {
-        console.log(`Attribute ${state.name} changed.`);
         return {
           ...state,
           value: action.payload.event.value,
@@ -35,7 +34,6 @@ const device = (state = {}, action) => {
   switch (action.type) {
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       if (action.payload.event.deviceId === state.id) {
-        console.log(`Device ${state.id} changed.`);
         const newState = {
           ...state,
           attributes: state.attributes.map(a => attribute(a, action)),
@@ -61,19 +59,6 @@ const devices = (state = [], action) => {
       }));
     case actionType.CHANGE_DEVICE_ATTRIBUTE:
       return state.map(d => device(d, action));
-    default:
-      return state;
-  }
-};
-
-const groups = (state = [], action) => {
-  switch (action.type) {
-    case actionType.LOAD_GROUPS:
-      return action.payload.groups.map(group => ({
-        id: group.id,
-        title: group.name,
-        devices: group.devices.map(d => d.deviceId),
-      }));
     default:
       return state;
   }
@@ -138,7 +123,6 @@ const ui = (state = initialUiState, action) => {
 const reducer = combineReducers({
   pages,
   devices,
-  groups,
   ui,
 });
 

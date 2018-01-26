@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Page component it should show a list with the devices as options 1`] = `
+<ul
+  className="ui-listview ui-snap-listview"
+>
+  <Item
+    active={true}
+    id="someDisplayDevice"
+    key="someDisplayDevice"
+    onSelect={[Function]}
+  >
+    <Display
+      device={
+        Object {
+          "attributes": Array [],
+          "config": undefined,
+          "id": "someDisplayDevice",
+          "template": "device",
+          "title": "SDD",
+        }
+      }
+    />
+  </Item>
+  <Item
+    active={false}
+    id="somePresenceDevice"
+    key="somePresenceDevice"
+    onSelect={[Function]}
+  >
+    <Presence
+      device={
+        Object {
+          "attributes": Array [],
+          "config": undefined,
+          "id": "somePresenceDevice",
+          "template": "presence",
+          "title": "SPD",
+        }
+      }
+    />
+  </Item>
+  <Item
+    active={false}
+    id="someSwitch"
+    key="someSwitch"
+    onSelect={[Function]}
+  >
+    <Switch
+      device={
+        Object {
+          "attributes": Array [],
+          "config": undefined,
+          "id": "someSwitch",
+          "template": "switch",
+          "title": "SS",
+        }
+      }
+    />
+  </Item>
+  <Item
+    active={false}
+    id="someTemperatureDevice"
+    key="someTemperatureDevice"
+    onSelect={[Function]}
+  >
+    <Temperature
+      device={
+        Object {
+          "attributes": Array [],
+          "config": undefined,
+          "id": "someTemperatureDevice",
+          "template": "temperature",
+          "title": "STD",
+        }
+      }
+    />
+  </Item>
+  <Item
+    active={false}
+    id="someThermostat"
+    key="someThermostat"
+    onSelect={[Function]}
+  >
+    <Thermostat
+      device={
+        Object {
+          "attributes": Array [],
+          "config": undefined,
+          "id": "someThermostat",
+          "template": "thermostat",
+          "title": "ST",
+        }
+      }
+    />
+  </Item>
+  <Item
+    active={false}
+    id="someButtons"
+    key="someButtons"
+    onSelect={[Function]}
+  >
+    <div>
+      SB - (buttons)
+    </div>
+  </Item>
+</ul>
+`;
+
+exports[`The Page component it should toggle the switch when the option is a switch 1`] = `
+Array [
+  Array [
+    "call",
+    Object {
+      "action": "callDeviceAction",
+      "id": "callDeviceAction",
+      "params": Object {
+        "actionName": "toggle",
+        "deviceId": "someSwitch",
+      },
+    },
+  ],
+]
+`;

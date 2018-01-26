@@ -11,8 +11,9 @@ import Presence from './deviceItem/Presence';
 import Temperature from './deviceItem/Temperature';
 import Thermostat from './deviceItem/Thermostat';
 
-let Page = ({ pageTitle, devices, activeDeviceId,
-  onActivateDevice, onSelectDevice, onToggleSwitch }) => {
+let Page = ({
+  pageTitle, devices, activeDeviceId, onActivateDevice, onSelectDevice, onToggleSwitch,
+}) => {
   const getListItemContent = (device) => {
     switch (device.template) {
       case 'device':
@@ -45,17 +46,18 @@ let Page = ({ pageTitle, devices, activeDeviceId,
     onSelect: getOnSelect(d),
   }));
 
-  return (<UiPage>
-    <Header>{pageTitle}</Header>
-    <Content>
-      <List
-        options={deviceOptions}
-        activeOptionId={activeDeviceId}
-        onActivateOption={onActivateDevice}
-        onSelectOption={onSelectDevice}
-      />
-    </Content>
-  </UiPage>);
+  return (
+    <UiPage>
+      <Header>{pageTitle}</Header>
+      <Content>
+        <List
+          options={deviceOptions}
+          activeOptionId={activeDeviceId}
+          onActivateOption={onActivateDevice}
+          onSelectOption={onSelectDevice}
+        />
+      </Content>
+    </UiPage>);
 };
 
 Page.propTypes = {
@@ -83,6 +85,4 @@ const mapDispatchToProps = dispatch => ({
   onToggleSwitch: id => dispatch(action.toggleSwitch(id)),
 });
 
-Page = connect(mapStateToProps, mapDispatchToProps)(Page);
-
-export default Page;
+export default Page = connect(mapStateToProps, mapDispatchToProps)(Page);

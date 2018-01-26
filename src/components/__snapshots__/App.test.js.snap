@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The App component it should render the Splash component 1`] = `
+<Splash>
+  <Page>
+    <div
+      className="ui-page ui-page-active ui-scroll-on"
+    >
+      <div
+        className="ui-scroller ui-snap-container"
+      >
+        <Component>
+          <div
+            className="ui-content"
+          >
+            <div
+              className="small-processing-container"
+            >
+              <div
+                className="ui-processing"
+              />
+              <div
+                className="ui-processing-text"
+              >
+                Fetching data...
+              </div>
+            </div>
+          </div>
+        </Component>
+      </div>
+    </div>
+  </Page>
+</Splash>
+`;

@@ -3,7 +3,6 @@ export const HANDLE_ERROR = 'HANDLE_ERROR';
 
 export const LOAD_PAGES = 'LOAD_PAGES';
 export const LOAD_DEVICES = 'LOAD_DEVICES';
-export const LOAD_GROUPS = 'LOAD_GROUPS';
 
 export const ACTIVATE_PAGE = 'ACTIVATE_PAGE';
 export const SELECT_PAGE = 'SELECT_PAGE';

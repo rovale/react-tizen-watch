@@ -1,15 +1,23 @@
 {
-    "extends": "airbnb",
+    "parser": "babel-eslint",
+
+    "extends": ["airbnb", "plugin:jest/recommended"],
+
+    "plugins": ["jest"],
+
     "globals": {
         "window": true,
         "document": true,
         "CustomEvent": true,
-        "KeyboardEvent": true
+        "KeyboardEvent": true,
+        "jest/globals": true
     },
     "rules": {
         "linebreak-style": "off",
         "react/no-multi-comp": "off",
         "no-class-assign": "off",
-        "import/no-mutable-exports": "off"
+        "import/no-mutable-exports": "off",
+        "import/no-named-as-default": "off",
+        "react/jsx-filename-extension" : "off"
     }
 }

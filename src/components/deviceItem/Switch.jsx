@@ -7,7 +7,8 @@ const Switch = ({ device }) => (
       <input
         type="checkbox"
         className="ui-switch-input"
-        readOnly checked={device.attributes[0].value}
+        readOnly
+        checked={device.attributes[0].value}
       />
       <div className="ui-switch-button" />
     </div>

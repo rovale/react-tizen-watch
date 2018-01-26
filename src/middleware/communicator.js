@@ -23,5 +23,3 @@ const communicator = store => next => action => {
 };
 
 export default communicator;
-
-
