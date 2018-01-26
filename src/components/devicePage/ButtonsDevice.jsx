@@ -6,8 +6,10 @@ import { List } from '../common/List';
 
 import * as action from '../../actions/creators';
 
-let ButtonsDevice = ({ device, activeButtonId, onActivateButton, onClickButton }) => {
-  const buttons = device.config.buttons;
+const ButtonsDevice = ({
+  device, activeButtonId, onActivateButton, onClickButton,
+}) => {
+  const { buttons } = device.config;
   const activeOptionId = activeButtonId || buttons[0].id;
 
   const getListItemContent = button => (
@@ -58,6 +60,4 @@ const mapDispatchToProps = dispatch => ({
   onClickButton: id => dispatch(action.clickButton(id)),
 });
 
-ButtonsDevice = connect(mapStateToProps, mapDispatchToProps)(ButtonsDevice);
-
-export default ButtonsDevice;
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonsDevice);

@@ -6,7 +6,9 @@ import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
 
-let Pages = ({ pages, activePageId, onActivatePage, onSelectPage }) =>
+let Pages = ({
+  pages, activePageId, onActivatePage, onSelectPage,
+}) => (
   <UiPage>
     <Header>React Tizen</Header>
     <Content>
@@ -17,7 +19,8 @@ let Pages = ({ pages, activePageId, onActivatePage, onSelectPage }) =>
         onSelectOption={onSelectPage}
       />
     </Content>
-  </UiPage>;
+  </UiPage>
+);
 
 Pages.propTypes = {
   pages: PropTypes.arrayOf(PropTypes.object).isRequired,

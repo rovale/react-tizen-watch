@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ButtonsDevice component it should emit the expected command when the button is selected 1`] = `
+Array [
+  Array [
+    "call",
+    Object {
+      "action": "callDeviceAction",
+      "id": "callDeviceAction",
+      "params": Object {
+        "actionName": "buttonPressed",
+        "buttonId": "blue",
+        "deviceId": null,
+      },
+    },
+  ],
+]
+`;
+
+exports[`The ButtonsDevice component it should show a list with the buttons as options 1`] = `
+<ul
+  className="ui-listview ui-snap-listview"
+>
+  <Item
+    active={true}
+    id="red"
+    key="red"
+    onSelect={[Function]}
+  >
+    <div>
+      <div
+        className="vertical-align-middle"
+      >
+        <input
+          checked={false}
+          readOnly={true}
+          type="radio"
+        />
+      </div>
+      <div
+        className="vertical-align-middle"
+      >
+         
+        Red
+      </div>
+    </div>
+  </Item>
+  <Item
+    active={false}
+    id="green"
+    key="green"
+    onSelect={[Function]}
+  >
+    <div>
+      <div
+        className="vertical-align-middle"
+      >
+        <input
+          checked={false}
+          readOnly={true}
+          type="radio"
+        />
+      </div>
+      <div
+        className="vertical-align-middle"
+      >
+         
+        Green
+      </div>
+    </div>
+  </Item>
+  <Item
+    active={false}
+    id="blue"
+    key="blue"
+    onSelect={[Function]}
+  >
+    <div>
+      <div
+        className="vertical-align-middle"
+      >
+        <input
+          checked={true}
+          readOnly={true}
+          type="radio"
+        />
+      </div>
+      <div
+        className="vertical-align-middle"
+      >
+         
+        Blue
+      </div>
+    </div>
+  </Item>
+</ul>
+`;

@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - 'stable'
+script:
+  - npm run build
+  - npm test -- --coverage
+after_script:
+  - npm run coveralls

@@ -18,9 +18,7 @@ require('es6-shim');
 
 // eslint-disable-next-line no-underscore-dangle
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || reduxCompose;
-const enhancer = compose(applyMiddleware(
-  communicator,
-));
+const enhancer = compose(applyMiddleware(communicator));
 
 const store = createStore(reducer, enhancer);
 

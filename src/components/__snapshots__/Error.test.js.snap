@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it should render as expected 1`] = `
+<Page>
+  <div
+    className="ui-page ui-page-active ui-scroll-on"
+  >
+    <div
+      className="ui-scroller ui-snap-container"
+    >
+      <Component>
+        <header
+          className="ui-header"
+        >
+          <h2
+            className="ui-title"
+          >
+            Error
+          </h2>
+        </header>
+      </Component>
+      <Component>
+        <div
+          className="ui-content"
+        >
+          Msg: 
+          someMsg
+          <br />
+          Url: 
+          someUrl
+          <br />
+          LineNo: 
+          10
+          <br />
+          ColumnNo: 
+          20
+          <br />
+          Error: 
+          someErrorStack
+        </div>
+      </Component>
+    </div>
+  </div>
+</Page>
+`;

@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import scroll from 'smooth-move';
 
 import './List.css';
 
 export class List extends React.Component {
+  static propTypes = {
+    options: PropTypes.arrayOf(PropTypes.object).isRequired,
+    activeOptionId: PropTypes.string.isRequired,
+    onActivateOption: PropTypes.func.isRequired,
+    onSelectOption: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -21,7 +27,7 @@ export class List extends React.Component {
   }
 
   onRotaryDetent(e) {
-    const direction = e.detail.direction;
+    const { direction } = e.detail;
 
     const index = this.props.options.findIndex(item => item.id === this.props.activeOptionId);
 
@@ -41,7 +47,7 @@ export class List extends React.Component {
   render() {
     const { options } = this.props;
 
-    const items = options.map(item =>
+    const items = options.map(item => (
       <Item
         key={item.id}
         id={item.id}
@@ -49,7 +55,8 @@ export class List extends React.Component {
         onSelect={item.onSelect || this.onSelectItem}
       >
         {item.content || <div>{item.title}</div>}
-      </Item>);
+      </Item>
+    ));
 
     return (
       <ul className="ui-listview ui-snap-listview">
@@ -59,14 +66,18 @@ export class List extends React.Component {
   }
 }
 
-List.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
-  activeOptionId: PropTypes.string.isRequired,
-  onActivateOption: PropTypes.func.isRequired,
-  onSelectOption: PropTypes.func.isRequired,
-};
-
 export class Item extends React.Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    active: PropTypes.bool.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired,
+  };
+
+  static contextTypes = {
+    scrollToMiddle: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
 
@@ -94,17 +105,11 @@ export class Item extends React.Component {
 
   scrollToMiddle(duration) {
     const itemRect = this.element.getBoundingClientRect();
-    const itemHeight = itemRect.height;
-    const scroller = document.getElementsByClassName('ui-scroller')[0];
-    const scrollerHeight = scroller.getBoundingClientRect().height;
-    const newScrollTop = (itemRect.top + scroller.scrollTop) - ((scrollerHeight - itemHeight) / 2);
-
-    scroll(scroller, { x: 0, y: newScrollTop, duration });
+    this.context.scrollToMiddle(duration, itemRect.top, itemRect.height);
   }
 
   render() {
     const { id, active, children } = this.props;
-
     return (
       <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${active ? ' ui-snap-listview-selected' : ''}`}>
         <a href={`#${id}`} onClick={this.onSelect} id={id}>{children}</a>
@@ -112,10 +117,3 @@ export class Item extends React.Component {
     );
   }
 }
-
-Item.propTypes = {
-  id: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
-  children: PropTypes.element.isRequired,
-  onSelect: PropTypes.func.isRequired,
-};

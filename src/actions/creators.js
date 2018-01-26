@@ -4,7 +4,6 @@ export const initializeApp = () => ({ type: actionType.INITIALIZE_APP });
 export const handleError = (msg, url, lineNo, columnNo, error) => ({ type: actionType.HANDLE_ERROR, payload: { msg, url, lineNo, columnNo, error } });
 export const loadPages = pages => ({ type: actionType.LOAD_PAGES, payload: { pages } });
 export const loadDevices = devices => ({ type: actionType.LOAD_DEVICES, payload: { devices } });
-export const loadGroups = groups => ({ type: actionType.LOAD_GROUPS, payload: { groups } });
 
 export const activatePage = id => ({ type: actionType.ACTIVATE_PAGE, payload: { id } });
 export const selectPage = id => ({ type: actionType.SELECT_PAGE, payload: { id } });

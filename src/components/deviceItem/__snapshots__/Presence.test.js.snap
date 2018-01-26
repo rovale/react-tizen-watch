@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it should render as expected 1`] = `
+<div>
+  <div
+    className="vertical-align-middle"
+  >
+    <input
+      checked={true}
+      readOnly={true}
+      type="checkbox"
+    />
+  </div>
+  <div
+    className="vertical-align-middle"
+  >
+     
+    Some Device
+  </div>
+</div>
+`;

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it should render as expected 1`] = `
+<div>
+  <div>
+    Some Device
+  </div>
+  <div
+    className="ui-li-sub-text"
+    key="0"
+  >
+    acronym1
+    : 
+    value 1
+    unit 1
+    <span>
+      , 
+      acronym2
+      : 
+      value 2
+      unit 2
+    </span>
+  </div>
+  <div
+    className="ui-li-sub-text"
+    key="2"
+  >
+    acronym3
+    : 
+    value 3
+    unit 3
+    <span>
+      , 
+      acronym4
+      : 
+      value 4
+      unit 4
+    </span>
+  </div>
+  <div
+    className="ui-li-sub-text"
+    key="4"
+  >
+    acronym5
+    : 
+    value 5
+    unit 5
+  </div>
+</div>
+`;
