@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import settings from './settings';
+import settings from '../settings';
 import * as action from '../actions/creators';
 
 let socket;

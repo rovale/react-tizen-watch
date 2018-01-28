@@ -1,4 +1,5 @@
 const settings = {
+  title: 'Demo home',
   protocol: 'http',
   host: 'demo.pimatic.org',
   port: 80,

@@ -8,6 +8,7 @@ import * as action from '../actions/creators';
 
 import Pages from './Pages';
 import { List } from './common/List';
+import { Header } from './common/Page';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -30,6 +31,12 @@ describe('The Pages component', () => {
   beforeEach(() => {
     store = createStore(reducer);
     store.dispatch(action.loadPages(pages));
+  });
+
+  test('it should show a header with the title of the application', () => {
+    const wrapper = mount((<Pages store={store} />));
+    const header = wrapper.find(Header);
+    expect(header.text()).toBe('Demo home');
   });
 
   test('it should show a list with the pages as options', () => {

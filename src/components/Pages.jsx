@@ -6,11 +6,13 @@ import * as action from '../actions/creators';
 import { Page as UiPage, Header, Content } from './common/Page';
 import { List } from './common/List';
 
+import settings from '../settings';
+
 let Pages = ({
   pages, activePageId, onActivatePage, onSelectPage,
 }) => (
   <UiPage>
-    <Header>React Tizen</Header>
+    <Header>{settings.title}</Header>
     <Content>
       <List
         options={pages}
