@@ -13,7 +13,7 @@
     "socket.io-client": "2.0.4"
   },
   "devDependencies": {
-    "@types/jest": "22.1.1",
+    "@types/jest": "22.1.2",
     "babel-eslint": "8.2.1",
     "coveralls": "3.0.0",
     "enzyme": "3.3.0",
