@@ -5,27 +5,27 @@
   "dependencies": {
     "es6-shim": "0.35.3",
     "prop-types": "15.6.1",
-    "react": "16.2.0",
+    "react": "16.3.0",
     "react-dom": "16.2.0",
     "react-redux": "5.0.7",
     "redux": "3.7.2",
     "smooth-move": "1.0.1",
-    "socket.io-client": "2.0.4"
+    "socket.io-client": "2.1.0"
   },
   "devDependencies": {
-    "@types/jest": "22.2.0",
+    "@types/jest": "22.2.1",
     "babel-eslint": "8.2.2",
     "coveralls": "3.0.0",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.2",
-    "eslint": "4.18.2",
+    "enzyme-to-json": "3.3.3",
+    "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
-    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-import": "2.10.0",
     "eslint-plugin-jest": "21.14.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
