@@ -17,7 +17,7 @@
     "babel-eslint": "8.2.3",
     "coveralls": "3.0.1",
     "enzyme": "3.4.2",
-    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-adapter-react-16": "1.2.0",
     "enzyme-to-json": "3.3.4",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
