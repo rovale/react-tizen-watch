@@ -16,7 +16,7 @@
     "@types/jest": "22.2.3",
     "babel-eslint": "8.2.3",
     "coveralls": "3.0.1",
-    "enzyme": "3.3.0",
+    "enzyme": "3.4.2",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
     "eslint": "4.19.1",
