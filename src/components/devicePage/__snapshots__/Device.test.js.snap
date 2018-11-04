@@ -7,17 +7,17 @@ exports[`The Device component it should show some text for a device without a sp
   <div
     className="ui-scroller ui-snap-container"
   >
-    <Component>
+    <Header>
       STD
-    </Component>
-    <Component>
+    </Header>
+    <Content>
       <div>
         Content of 
         someTemperatureDevice
          
         temperature
       </div>
-    </Component>
+    </Content>
   </div>
 </div>
 `;

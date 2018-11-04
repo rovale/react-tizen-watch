@@ -50,7 +50,7 @@ exports[`the List component it should contain the provided items 1`] = `
     active={false}
     id="option3"
     key="option3"
-    onSelect={[Function]}
+    onSelect={[MockFunction]}
   >
     <li
       className="ui-snap-listview-item"

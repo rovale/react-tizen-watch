@@ -8,7 +8,7 @@ exports[`it should render as expected 1`] = `
     <div
       className="ui-scroller ui-snap-container"
     >
-      <Component>
+      <Header>
         <header
           className="ui-header"
         >
@@ -18,8 +18,8 @@ exports[`it should render as expected 1`] = `
             Error
           </h2>
         </header>
-      </Component>
-      <Component>
+      </Header>
+      <Content>
         <div
           className="ui-content"
         >
@@ -38,7 +38,7 @@ exports[`it should render as expected 1`] = `
           Error: 
           someErrorStack
         </div>
-      </Component>
+      </Content>
     </div>
   </div>
 </Page>
