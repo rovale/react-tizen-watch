@@ -9,7 +9,7 @@ exports[`The App component it should render the Splash component 1`] = `
       <div
         className="ui-scroller ui-snap-container"
       >
-        <Component>
+        <Content>
           <div
             className="ui-content"
           >
@@ -26,7 +26,7 @@ exports[`The App component it should render the Splash component 1`] = `
               </div>
             </div>
           </div>
-        </Component>
+        </Content>
       </div>
     </div>
   </Page>
