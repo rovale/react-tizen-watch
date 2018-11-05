@@ -1,6 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from '../reducers';
@@ -9,8 +8,6 @@ import * as action from '../actions/creators';
 
 import Page from './Page';
 import { List } from './common/List';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const pages = [
   {

@@ -1,14 +1,11 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 
 import { createStore } from 'redux';
 import reducer from '../reducers';
 import * as action from '../actions/creators';
 
 import Error from './Error';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 test('it should render as expected', () => {
   const store = createStore(reducer);

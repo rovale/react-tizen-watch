@@ -1,6 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount } from 'enzyme';
 
 import { createStore } from 'redux';
 import reducer from '../reducers';
@@ -12,8 +11,6 @@ import Pages from './Pages';
 import Page from './Page';
 import Device from './devicePage/Device';
 import App from './App';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('The App component', () => {
   let store;

@@ -1,6 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 
 import { createStore } from 'redux';
 import reducer from '../../reducers';
@@ -8,8 +7,6 @@ import * as action from '../../actions/creators';
 
 import Device from './Device';
 import ButtonsDevice from './ButtonsDevice';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 /* eslint-disable object-curly-newline */
 const devices = [
