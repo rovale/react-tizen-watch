@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollContext } from './Page';
 
@@ -67,53 +67,41 @@ export class List extends React.Component {
   }
 }
 
-export class Item extends React.Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    active: PropTypes.bool.isRequired,
-    onSelect: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired,
+export const Item = ({
+  id, active, onSelect, children,
+}) => {
+  const scroll = useContext(ScrollContext);
+  const element = useRef(null);
+
+  const scrollToMiddle = (duration) => {
+    const itemRect = element.current.getBoundingClientRect();
+    scroll(duration, itemRect.top, itemRect.height);
   };
 
-  static contextType = ScrollContext;
+  useEffect(
+    () => {
+      if (active) {
+        window.setTimeout(() => scrollToMiddle(1), 0);
+      }
+    },
+    [active],
+  );
 
-  constructor(props) {
-    super(props);
-
-    this.scrollToMiddle = this.scrollToMiddle.bind(this);
-    this.onSelect = this.onSelect.bind(this);
-    this.element = null;
-  }
-
-  componentDidMount() {
-    if (this.props.active) {
-      window.setTimeout(() => this.scrollToMiddle(1), 0);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.active && !this.props.active) {
-      window.setTimeout(() => this.scrollToMiddle(400), 0);
-    }
-  }
-
-  onSelect(e) {
+  const onClick = (e) => {
     e.preventDefault();
-    this.props.onSelect(this.props.id);
-  }
+    onSelect(id);
+  };
 
-  scrollToMiddle(duration) {
-    const itemRect = this.element.getBoundingClientRect();
-    const scroll = this.context;
-    scroll(duration, itemRect.top, itemRect.height);
-  }
+  return (
+    <li ref={element} className={`ui-snap-listview-item${active ? ' ui-snap-listview-selected' : ''}`}>
+      <a href={`#${id}`} onClick={onClick} id={id}>{children}</a>
+    </li>
+  );
+};
 
-  render() {
-    const { id, active, children } = this.props;
-    return (
-      <li ref={(e) => { this.element = e; }} className={`ui-snap-listview-item${active ? ' ui-snap-listview-selected' : ''}`}>
-        <a href={`#${id}`} onClick={this.onSelect} id={id}>{children}</a>
-      </li>
-    );
-  }
-}
+Item.propTypes = {
+  id: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+};
