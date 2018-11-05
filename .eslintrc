@@ -18,6 +18,7 @@
         "no-class-assign": "off",
         "import/no-mutable-exports": "off",
         "import/no-named-as-default": "off",
+        "react/jsx-one-expression-per-line": "off",
         "react/jsx-filename-extension" : "off"
     }
 }
