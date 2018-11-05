@@ -1,4 +1,4 @@
-import * as actionType from '../actions/types';
+import * as actionType from './types';
 
 export const initializeApp = () => ({ type: actionType.INITIALIZE_APP });
 export const handleError = (msg, url, lineNo, columnNo, error) => ({ type: actionType.HANDLE_ERROR, payload: { msg, url, lineNo, columnNo, error } });

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ScrollContext } from './Page';
 
 import './List.css';
 
@@ -74,9 +75,7 @@ export class Item extends React.Component {
     children: PropTypes.element.isRequired,
   };
 
-  static contextTypes = {
-    scrollToMiddle: PropTypes.func,
-  };
+  static contextType = ScrollContext;
 
   constructor(props) {
     super(props);
@@ -105,7 +104,8 @@ export class Item extends React.Component {
 
   scrollToMiddle(duration) {
     const itemRect = this.element.getBoundingClientRect();
-    this.context.scrollToMiddle(duration, itemRect.top, itemRect.height);
+    const scroll = this.context;
+    scroll(duration, itemRect.top, itemRect.height);
   }
 
   render() {

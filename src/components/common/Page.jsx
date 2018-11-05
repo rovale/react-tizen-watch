@@ -2,22 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import scroll from 'smooth-move';
 
+export const ScrollContext = React.createContext();
+
 export class Page extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
-  static childContextTypes = {
-    scrollToMiddle: PropTypes.func,
-  };
-
   constructor(props) {
     super(props);
     this.element = null;
-  }
-
-  getChildContext() {
-    return { scrollToMiddle: this.scrollToMiddle };
   }
 
   scrollToMiddle = (duration, itemTop, itemHeight) => {
@@ -32,7 +26,9 @@ export class Page extends React.Component {
     return (
       <div ref={(e) => { this.element = e; }} className="ui-page ui-page-active ui-scroll-on">
         <div className="ui-scroller ui-snap-container" ref={e => e && e.setAttribute('tizen-circular-scrollbar', '')}>
-          {this.props.children}
+          <ScrollContext.Provider value={this.scrollToMiddle}>
+            {this.props.children}
+          </ScrollContext.Provider>
         </div>
       </div>
     );

@@ -5,8 +5,8 @@
   "dependencies": {
     "es6-shim": "0.35.4",
     "prop-types": "15.6.2",
-    "react": "16.6.0",
-    "react-dom": "16.6.0",
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0",
     "react-redux": "5.1.0",
     "redux": "4.0.1",
     "smooth-move": "1.0.1",
