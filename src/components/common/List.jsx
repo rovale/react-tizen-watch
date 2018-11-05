@@ -4,68 +4,53 @@ import { ScrollContext } from './Page';
 
 import './List.css';
 
-export class List extends React.Component {
-  static propTypes = {
-    options: PropTypes.arrayOf(PropTypes.object).isRequired,
-    activeOptionId: PropTypes.string.isRequired,
-    onActivateOption: PropTypes.func.isRequired,
-    onSelectOption: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.onRotaryDetent = this.onRotaryDetent.bind(this);
-    this.onSelectItem = this.onSelectItem.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('rotarydetent', this.onRotaryDetent);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('rotarydetent', this.onRotaryDetent);
-  }
-
-  onRotaryDetent(e) {
+export const List = ({
+  options, activeOptionId, onActivateOption, onSelectOption,
+}) => {
+  const onRotaryDetent = (e) => {
     const { direction } = e.detail;
 
-    const index = this.props.options.findIndex(item => item.id === this.props.activeOptionId);
+    const index = options.findIndex(item => item.id === activeOptionId);
 
     if (direction === 'CW') {
-      if (index < (this.props.options.length - 1)) {
-        this.props.onActivateOption(this.props.options[index + 1].id);
+      if (index < (options.length - 1)) {
+        onActivateOption(options[index + 1].id);
       }
     } else if (index > 0) {
-      this.props.onActivateOption(this.props.options[index - 1].id);
+      onActivateOption(options[index - 1].id);
     }
-  }
+  };
 
-  onSelectItem(itemId) {
-    this.props.onSelectOption(itemId);
-  }
+  useEffect(() => {
+    window.addEventListener('rotarydetent', onRotaryDetent);
+    return () => window.removeEventListener('rotarydetent', onRotaryDetent);
+  });
 
-  render() {
-    const { options } = this.props;
+  const items = options.map(item => (
+    <Item
+      key={item.id}
+      id={item.id}
+      active={item.id === activeOptionId}
+      onSelect={item.onSelect || onSelectOption}
+    >
+      {item.content || <div>{item.title}</div>}
+    </Item>
+  ));
 
-    const items = options.map(item => (
-      <Item
-        key={item.id}
-        id={item.id}
-        active={item.id === this.props.activeOptionId}
-        onSelect={item.onSelect || this.onSelectItem}
-      >
-        {item.content || <div>{item.title}</div>}
-      </Item>
-    ));
+  return (
+    <ul className="ui-listview ui-snap-listview">
+      {items}
+    </ul>
+  );
+};
 
-    return (
-      <ul className="ui-listview ui-snap-listview">
-        {items}
-      </ul>
-    );
-  }
-}
+List.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeOptionId: PropTypes.string.isRequired,
+  onActivateOption: PropTypes.func.isRequired,
+  onSelectOption: PropTypes.func.isRequired,
+};
+
 
 export const Item = ({
   id, active, onSelect, children,
