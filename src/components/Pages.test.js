@@ -1,6 +1,5 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 
 import { createStore } from 'redux';
 import reducer from '../reducers';
@@ -9,8 +8,6 @@ import * as action from '../actions/creators';
 import Pages from './Pages';
 import { List } from './common/List';
 import { Header } from './common/Page';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const pages = [
   {

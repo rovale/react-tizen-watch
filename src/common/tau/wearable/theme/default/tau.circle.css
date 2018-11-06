@@ -247,7 +247,7 @@ body {
   position: relative;
   margin: 0;
   padding: 8% 22% 16%;
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 60, 102, 0.9) 50%, transparent 50%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 60, 102, 0.9) 50%, transparent 50%);
   background-size: 300% 840%;
   background-position: 50% 16.5%;
   background-repeat: no-repeat;
@@ -260,7 +260,7 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 149, 255, 0.5) 50%, transparent 50%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 149, 255, 0.5) 50%, transparent 50%);
   background-position: 50% 16.5%;
   background-repeat: no-repeat;
   background-size: 300% 840%;
@@ -558,7 +558,7 @@ a {
   -ms-transform: translate3d(68%, -50%, 0);
   -o-transform: translate3d(68%, -50%, 0);
   transform: translate3d(68%, -50%, 0);
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 60, 102, 0.9) 70%, transparent 70%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 60, 102, 0.9) 70%, transparent 70%);
   background-repeat: no-repeat;
   background-size: 570% 150%;
 }
@@ -567,7 +567,7 @@ a {
   -webkit-transform: translate3d(0, -50%, 0);
 }
 .ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n)::after {
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 149, 255, 0.5) 70%, transparent 70%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 149, 255, 0.5) 70%, transparent 70%);
   background-repeat: no-repeat;
   background-size: 570% 150%;
   -webkit-transition: -webkit-transform 250ms;
@@ -625,7 +625,7 @@ a {
   width: 100%;
   border: none;
   padding: 8% 22% 16%;
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 60, 102, 0.9) 50%, transparent 50%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 60, 102, 0.9) 50%, transparent 50%);
   background-position: 50% 16.5%;
   background-repeat: no-repeat;
   background-size: 300% 840%;
@@ -650,7 +650,7 @@ a {
   height: 100%;
   left: 0;
   top: 0;
-  background: -webkit-radial-gradient(center, circle cover, rgba(0, 149, 255, 0.5) 50%, transparent 50%);
+  background: -webkit-radial-gradient(center, circle farthest-corner, rgba(0, 149, 255, 0.5) 50%, transparent 50%);
   background-position: 50% 16.5%;
   background-repeat: no-repeat;
   background-size: 300% 840%;
