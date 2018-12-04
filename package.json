@@ -17,7 +17,7 @@
     "coveralls": "3.0.2",
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.7.0",
-    "enzyme-to-json": "3.3.4",
+    "enzyme-to-json": "3.3.5",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jest": "22.1.0",
