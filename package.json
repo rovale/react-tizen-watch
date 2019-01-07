@@ -23,7 +23,7 @@
     "eslint-plugin-jest": "22.1.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
