@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "es6-shim": "0.35.4",
+    "es6-shim": "0.35.5",
     "prop-types": "15.6.2",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
