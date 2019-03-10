@@ -11,9 +11,19 @@ import ButtonsDevice from './ButtonsDevice';
 /* eslint-disable object-curly-newline */
 const devices = [
   { id: 'someDisplayDevice', name: 'SDD', template: 'device', attributes: [] },
-  { id: 'somePresenceDevice', name: 'SPD', template: 'presence', attributes: [] },
+  {
+    id: 'somePresenceDevice',
+    name: 'SPD',
+    template: 'presence',
+    attributes: [],
+  },
   { id: 'someSwitch', name: 'SS', template: 'switch', attributes: [] },
-  { id: 'someTemperatureDevice', name: 'STD', template: 'temperature', attributes: [] },
+  {
+    id: 'someTemperatureDevice',
+    name: 'STD',
+    template: 'temperature',
+    attributes: [],
+  },
   { id: 'someThermostat', name: 'ST', template: 'thermostat', attributes: [] },
   { id: 'someButtons', name: 'SB', template: 'buttons', attributes: [] },
 ];
@@ -29,7 +39,7 @@ describe('The Device component', () => {
 
   test('it should show a ButtonsDevice component for a buttons device', () => {
     store.dispatch(action.selectDevice('someButtons'));
-    const device = shallow((<Device store={store} />)).dive();
+    const device = shallow(<Device store={store} />).dive();
 
     const buttonsDevice = device.find(ButtonsDevice);
 
@@ -39,8 +49,7 @@ describe('The Device component', () => {
   test('it should show some text for a device without a specific implementation', () => {
     store.dispatch(action.selectDevice('someTemperatureDevice'));
 
-    // TODO: check if this works once hooks are not alpha anymore: https://github.com/facebook/react/issues/14091
-    // const device = shallow((<Device store={store} />)).dive();
-    // expect(device.dive()).toMatchSnapshot();
+    const device = shallow(<Device store={store} />).dive();
+    expect(device.dive()).toMatchSnapshot();
   });
 });

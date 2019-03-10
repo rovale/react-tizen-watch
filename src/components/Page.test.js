@@ -27,9 +27,19 @@ const pages = [
 /* eslint-disable object-curly-newline */
 const devices = [
   { id: 'someDisplayDevice', name: 'SDD', template: 'device', attributes: [] },
-  { id: 'somePresenceDevice', name: 'SPD', template: 'presence', attributes: [] },
+  {
+    id: 'somePresenceDevice',
+    name: 'SPD',
+    template: 'presence',
+    attributes: [],
+  },
   { id: 'someSwitch', name: 'SS', template: 'switch', attributes: [] },
-  { id: 'someTemperatureDevice', name: 'STD', template: 'temperature', attributes: [] },
+  {
+    id: 'someTemperatureDevice',
+    name: 'STD',
+    template: 'temperature',
+    attributes: [],
+  },
   { id: 'someThermostat', name: 'ST', template: 'thermostat', attributes: [] },
   { id: 'someButtons', name: 'SB', template: 'buttons', attributes: [] },
 ];
@@ -50,7 +60,10 @@ describe('The Page component', () => {
     dispatchedActions = [];
 
     socketIoEmitSpy = jest.fn();
-    window.testSocketIoClient = () => ({ emit: socketIoEmitSpy, on: jest.fn() });
+    window.testSocketIoClient = () => ({
+      emit: socketIoEmitSpy,
+      on: jest.fn(),
+    });
 
     const enhancer = compose(applyMiddleware(spyMiddleware, communicator));
     store = createStore(reducer, enhancer);
@@ -60,19 +73,18 @@ describe('The Page component', () => {
     store.dispatch(action.selectPage('somePage'));
   });
 
-  // TODO: enable when hooks are no longer alpha
-  // test('it should show a list with the devices as options', () => {
-  //   const page = shallow((<Page store={store} />)).dive();
-  //   const list = page.find(List);
+  test('it should show a list with the devices as options', () => {
+    const page = shallow(<Page store={store} />).dive();
+    const list = page.find(List);
 
-  //   const listOptions = list.prop('options');
-  //   expect(listOptions).toHaveLength(6);
+    const listOptions = list.prop('options');
+    expect(listOptions).toHaveLength(6);
 
-  //   expect(list.dive()).toMatchSnapshot();
-  // });
+    expect(list.dive()).toMatchSnapshot();
+  });
 
   test('it should mark the first device as active option', () => {
-    const page = shallow((<Page store={store} />)).dive();
+    const page = shallow(<Page store={store} />).dive();
     const list = page.find(List);
 
     expect(list.prop('activeOptionId')).toBe('someDisplayDevice');
@@ -80,14 +92,14 @@ describe('The Page component', () => {
 
   test('it should mark the selected device as active option', () => {
     store.dispatch(action.selectDevice('someThermostat'));
-    const page = shallow((<Page store={store} />)).dive();
+    const page = shallow(<Page store={store} />).dive();
     const list = page.find(List);
 
     expect(list.prop('activeOptionId')).toBe('someThermostat');
   });
 
   test('it should activate the device when the option is activated in the list', () => {
-    const page = shallow((<Page store={store} />)).dive();
+    const page = shallow(<Page store={store} />).dive();
     const list = page.find(List);
 
     list.prop('onActivateOption')('someThermostat');
@@ -96,30 +108,30 @@ describe('The Page component', () => {
     expect(store.getState().ui.selectedDeviceId).toBeNull();
   });
 
-  // TODO: enable when hooks are no longer alpha
-  // test('it should select the device when the option is selected in the list', () => {
-  //   const page = shallow((<Page store={store} />)).dive();
-  //   const list = page.find(List);
-  //   const listContent = list.dive();
-  //   const listItem = listContent.find('Item[id="someThermostat"]');
+  test('it should select the device when the option is selected in the list', () => {
+    const page = shallow(<Page store={store} />).dive();
+    const list = page.find(List);
+    const listContent = list.dive();
+    const listItem = listContent.find('Item[id="someThermostat"]');
 
-  //   // TODO: make onSelect work without specifying the id.
-  //   listItem.prop('onSelect')('someThermostat');
+    // TODO: make onSelect work without specifying the id.
+    listItem.prop('onSelect')('someThermostat');
 
-  //   expect(store.getState().ui.activeDeviceId).toBe('someThermostat');
-  //   expect(store.getState().ui.selectedDeviceId).toBe('someThermostat');
-  // });
+    expect(store.getState().ui.activeDeviceId).toBe('someThermostat');
+    expect(store.getState().ui.selectedDeviceId).toBe('someThermostat');
+  });
 
-  // TODO: enable when hooks are no longer alpha
-  // test('it should toggle the switch when the option is a switch', () => {
-  //   const page = shallow((<Page store={store} />)).dive();
-  //   const list = page.find(List);
-  //   const listContent = list.dive();
-  //   const listItemWithSwitch = listContent.find('Item[id="someSwitch"]');
+  test('it should toggle the switch when the option is a switch', () => {
+    const page = shallow(<Page store={store} />).dive();
+    const list = page.find(List);
+    const listContent = list.dive();
+    const listItemWithSwitch = listContent.find('Item[id="someSwitch"]');
 
-  //   listItemWithSwitch.prop('onSelect')();
+    listItemWithSwitch.prop('onSelect')();
 
-  //   expect(dispatchedActions[dispatchedActions.length - 1]).toMatchObject(action.toggleSwitch('someSwitch'));
-  //   expect(socketIoEmitSpy.mock.calls).toMatchSnapshot();
-  // });
+    expect(dispatchedActions[dispatchedActions.length - 1]).toMatchObject(
+      action.toggleSwitch('someSwitch'),
+    );
+    expect(socketIoEmitSpy.mock.calls).toMatchSnapshot();
+  });
 });
