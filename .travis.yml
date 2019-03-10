@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 'stable'
+  - "stable"
 script:
-  - npm run build
-  - npm test -- --coverage
+  - yarn run build
+  - yarn test --coverage
 after_script:
-  - npm run coveralls
+  - yarn run coveralls
