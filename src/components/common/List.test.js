@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { List, Item } from './List';
-import { Page } from './Page';
 
 describe('the List component', () => {
   let options;
@@ -33,7 +32,14 @@ describe('the List component', () => {
   });
 
   test('it should contain the provided items', () => {
-    const list = mount(<List options={options} activeOptionId="option1" onActivateOption={() => {}} onSelectOption={() => {}} />);
+    const list = mount(
+      <List
+        options={options}
+        activeOptionId="option1"
+        onActivateOption={() => {}}
+        onSelectOption={() => {}}
+      />,
+    );
 
     const items = list.find(Item);
     expect(items).toHaveLength(3);
@@ -41,7 +47,14 @@ describe('the List component', () => {
   });
 
   test('it should invoke the generic callback when an option without a specific callback is selected', () => {
-    const list = mount(<List options={options} activeOptionId="option1" onActivateOption={() => {}} onSelectOption={onGenericSelect} />);
+    const list = mount(
+      <List
+        options={options}
+        activeOptionId="option1"
+        onActivateOption={() => {}}
+        onSelectOption={onGenericSelect}
+      />,
+    );
     const link = list.find('a[id="option1"]');
 
     link.simulate('click', { preventDefault: () => {} });
@@ -52,7 +65,14 @@ describe('the List component', () => {
   });
 
   test('it should invoke the specific callback when an option with a specific callback is selected', () => {
-    const list = mount(<List options={options} activeOptionId="option1" onActivateOption={() => {}} onSelectOption={onGenericSelect} />);
+    const list = mount(
+      <List
+        options={options}
+        activeOptionId="option1"
+        onActivateOption={() => {}}
+        onSelectOption={onGenericSelect}
+      />,
+    );
     const link = list.find('a[id="option3"]');
 
     link.simulate('click', { preventDefault: () => {} });
@@ -73,7 +93,14 @@ describe('the List component', () => {
   // });
 
   test('it should not go beyond the last item in the list when the bezel is turned clockwise', () => {
-    mount(<List options={options} activeOptionId="option3" onActivateOption={onActivate} onSelectOption={() => {}} />);
+    mount(
+      <List
+        options={options}
+        activeOptionId="option3"
+        onActivateOption={onActivate}
+        onSelectOption={() => {}}
+      />,
+    );
 
     events.rotarydetent({ detail: { direction: 'CW' } });
 
@@ -91,7 +118,14 @@ describe('the List component', () => {
   // });
 
   test('it should not go before the first item in the list when the bezel is turned counter clockwise', () => {
-    mount(<List options={options} activeOptionId="option1" onActivateOption={onActivate} onSelectOption={() => {}} />);
+    mount(
+      <List
+        options={options}
+        activeOptionId="option1"
+        onActivateOption={onActivate}
+        onSelectOption={() => {}}
+      />,
+    );
 
     events.rotarydetent({ detail: { direction: 'CCW' } });
 
@@ -109,7 +143,14 @@ describe('the List component', () => {
   // });
 
   test('it should cleanup the event listeners', () => {
-    const list = mount(<List options={options} activeOptionId="option3" onActivateOption={() => {}} onSelectOption={() => {}} />);
+    const list = mount(
+      <List
+        options={options}
+        activeOptionId="option3"
+        onActivateOption={() => {}}
+        onSelectOption={() => {}}
+      />,
+    );
 
     list.unmount();
 

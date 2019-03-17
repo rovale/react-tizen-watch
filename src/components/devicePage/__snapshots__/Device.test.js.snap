@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Device component it should show some text for a device without a specific implementation 1`] = `
+<div
+  className="ui-page ui-page-active ui-scroll-on"
+>
+  <div
+    className="ui-scroller ui-snap-container"
+  >
+    <ContextProvider
+      value={[Function]}
+    >
+      <Header>
+        STD
+      </Header>
+      <Content>
+        <div>
+          Content of 
+          someTemperatureDevice
+           
+          temperature
+        </div>
+      </Content>
+    </ContextProvider>
+  </div>
+</div>
+`;
