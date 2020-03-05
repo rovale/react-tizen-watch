@@ -10,7 +10,7 @@
     "react-redux": "5.1.1",
     "redux": "4.0.1",
     "smooth-move": "1.0.1",
-    "socket.io-client": "2.2.0"
+    "socket.io-client": "2.3.0"
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
